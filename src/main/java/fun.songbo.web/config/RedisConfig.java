@@ -138,6 +138,141 @@ public class RedisConfig {
         this.numTestsPerEvictionRun = numTestsPerEvictionRun;
     }
 
+    public Long getMinEvictableIdleTimeMillis() {
+        return minEvictableIdleTimeMillis;
+    }
 
+    public Long getTimeBetweenEvictionRuns() {
+        return timeBetweenEvictionRuns;
+    }
+
+    public void setTimeBetweenEvictionRuns(Long timeBetweenEvictionRuns) {
+        this.timeBetweenEvictionRuns = timeBetweenEvictionRuns;
+    }
+
+    public void setMinEvictableIdleTimeMillis(Long minEvictableIdleTimeMillis) {
+        this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
+    }
+
+    public String getRedisHost() {
+        return redisHost;
+    }
+
+    public void setRedisHost(String redisHost) {
+        this.redisHost = redisHost;
+    }
+
+    public int getRedisPort() {
+        return redisPort;
+    }
+
+    public void setRedisPort(int redisPort) {
+        this.redisPort = redisPort;
+    }
+
+    public String getRedisPwd() {
+        return redisPwd;
+    }
+
+    public void setRedisPwd(String redisPwd) {
+        this.redisPwd = redisPwd;
+    }
+
+    public int getMaxTotal() {
+        return maxTotal;
+    }
+
+    public void setMaxTotal(int maxTotal) {
+        this.maxTotal = maxTotal;
+    }
+
+    public int getMaxIdle() {
+        return maxIdle;
+    }
+
+    public void setMaxIdle(int maxIdle) {
+        this.maxIdle = maxIdle;
+    }
+
+    public int getMinIdle() {
+        return minIdle;
+    }
+
+    public void setMinIdle(int minIdle) {
+        this.minIdle = minIdle;
+    }
+
+    public boolean isBlockWhenExhausted() {
+        return blockWhenExhausted;
+    }
+
+    public void setBlockWhenExhausted(boolean blockWhenExhausted) {
+        this.blockWhenExhausted = blockWhenExhausted;
+    }
+
+    public int getMaxWaitMillis() {
+        return maxWaitMillis;
+    }
+
+    public void setMaxWaitMillis(int maxWaitMillis) {
+        this.maxWaitMillis = maxWaitMillis;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public boolean isTestOnBorrow() {
+        return testOnBorrow;
+    }
+
+    public void setTestOnBorrow(boolean testOnBorrow) {
+        this.testOnBorrow = testOnBorrow;
+    }
+
+    public boolean isTestOnReturn() {
+        return testOnReturn;
+    }
+
+    public void setTestOnReturn(boolean testOnReturn) {
+        this.testOnReturn = testOnReturn;
+    }
+
+    public boolean isTestOnCreate() {
+        return testOnCreate;
+    }
+
+    public void setTestOnCreate(boolean testOnCreate) {
+        this.testOnCreate = testOnCreate;
+    }
+
+    public boolean isTestWhileIdle() {
+        return testWhileIdle;
+    }
+
+    public void setTestWhileIdle(boolean testWhileIdle) {
+        this.testWhileIdle = testWhileIdle;
+    }
+
+    public boolean isJmxEnabled() {
+        return jmxEnabled;
+    }
+
+    public void setJmxEnabled(boolean jmxEnabled) {
+        this.jmxEnabled = jmxEnabled;
+    }
+
+
+    public int getNumTestsPerEvictionRun() {
+        return numTestsPerEvictionRun;
+    }
+
+    public void setNumTestsPerEvictionRun(int numTestsPerEvictionRun) {
+        this.numTestsPerEvictionRun = numTestsPerEvictionRun;
+    }
 
 }
