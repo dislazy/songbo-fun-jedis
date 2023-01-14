@@ -1,5 +1,6 @@
 package fun.songbo.web;
 
+import fun.songbo.web.commons.EXPX;
 import fun.songbo.web.config.RedisConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -96,4 +97,33 @@ public class RedisTools {
         }
         return null;
     }
+
+
+    public String set(String key, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value);
+        }
+    }
+
+
+    public String set(byte[] key, byte[] value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value);
+        }
+    }
+
+
+    public String set(String key, String value, EXPX expx, long exp) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value, setParams(expx, exp));
+        }
+    }
+
+
+    public String set(byte[] key, byte[] value, EXPX expx, long exp) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value, setParams(expx, exp));
+        }
+    }
+
 }
