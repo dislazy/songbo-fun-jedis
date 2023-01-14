@@ -6,6 +6,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.time.Duration;
+import java.util.List;
 
 /**
  * <p>
@@ -64,5 +65,35 @@ public class RedisTools {
             throw new RuntimeException("jedis not init");
         }
         return pool.getResource();
+    }
+
+    public String get(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.get(key);
+        }
+    }
+
+
+    public List<String> mget(String... keys) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.mget(keys);
+        }
+    }
+
+
+    public long del(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.del(key);
+        }
+    }
+
+
+    public String rename(String oldKey, String newKey) {
+        try (Jedis jedis = getJedis()) {
+            if (jedis.exists(oldKey)) {
+                return jedis.rename(oldKey, newKey);
+            }
+        }
+        return null;
     }
 }
