@@ -1,10 +1,12 @@
 package fun.songbo.web;
 
 import fun.songbo.web.commons.EXPX;
+import fun.songbo.web.commons.Expire;
 import fun.songbo.web.config.RedisConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.params.SetParams;
 
 import java.time.Duration;
 import java.util.List;
@@ -123,6 +125,62 @@ public class RedisTools {
     public String set(byte[] key, byte[] value, EXPX expx, long exp) {
         try (Jedis jedis = getJedis()) {
             return jedis.set(key, value, setParams(expx, exp));
+        }
+    }
+
+    /**
+     * @param expx 单位 秒或者毫秒
+     * @param exp  过期时间
+     * @return
+     */
+    private static SetParams setParams(EXPX expx, long exp) {
+        SetParams setParams = new SetParams();
+        if (expx.equals(EXPX.SECONDS)) {
+            setParams.ex(exp);
+        } else if (expx.equals(EXPX.MILLISECONDS)) {
+            setParams.px(exp);
+        }
+        return setParams;
+    }
+
+    private static SetParams setParams(EXPX expx, long exp,boolean nx) {
+        SetParams setParams = new SetParams();
+        if (nx) {
+            setParams.nx();
+        } else {
+            setParams.xx();
+        }
+        if (expx.equals(EXPX.SECONDS)) {
+            setParams.ex(exp);
+        } else if (expx.equals(EXPX.MILLISECONDS)) {
+            setParams.px(exp);
+        }
+        return setParams;
+    }
+
+
+    public String set(String key, String value, Expire exp) {
+        if (exp == null) {
+            return "not ok";
+        }
+        SetParams params = setParams(EXPX.SECONDS, exp.getTime());
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value,params);
+        }
+    }
+
+
+    public String set(byte[] key, byte[] value, Expire exp) {
+        if (exp == null) {
+            return "not ok";
+        }
+        return set(key, value, EXPX.SECONDS, (long) exp.getTime());
+    }
+
+
+    public String set(String key, String value, boolean ex, int time, boolean nx) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.set(key, value, setParams(ex ? EXPX.SECONDS : EXPX.MILLISECONDS, time, nx));
         }
     }
 
