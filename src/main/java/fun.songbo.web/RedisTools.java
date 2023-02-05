@@ -184,4 +184,32 @@ public class RedisTools {
         }
     }
 
+
+    public String setex(String key, long seconds, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.setex(key, seconds, value);
+        }
+    }
+
+
+    public boolean setnx(String key, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.setnx(key, value) > 0L;
+        }
+    }
+
+
+    public boolean exists(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.exists(key);
+        }
+    }
+
+
+    public Long expire(String key, Expire exp) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.expire(key, exp.getTime());
+        }
+    }
+
 }
