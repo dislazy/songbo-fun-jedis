@@ -212,4 +212,39 @@ public class RedisTools {
         }
     }
 
+
+    public Long expire(byte[] key, Expire exp) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.expire(key, exp.getTime());
+        }
+    }
+
+
+    public Long expire(String key, long seconds) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.expire(key, seconds);
+        }
+    }
+
+
+    public Long expireAt(String key, long unixTime) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.expireAt(key, unixTime);
+        }
+    }
+
+
+    public Long expireAt(byte[] key, long unixTime) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.expireAt(key, unixTime);
+        }
+    }
+
+
+    public Long ttl(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.ttl(key);
+        }
+    }
+
 }
