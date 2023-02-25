@@ -247,4 +247,18 @@ public class RedisTools {
         }
     }
 
+    public Long incr(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.incr(key);
+        }
+    }
+
+
+    public Long incrby(String key, long increment) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.incrBy(key, increment);
+        }
+    }
+
+
 }
