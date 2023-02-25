@@ -7,9 +7,11 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.params.SetParams;
+import redis.clients.jedis.resps.ScanResult;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -259,6 +261,26 @@ public class RedisTools {
             return jedis.incrBy(key, increment);
         }
     }
+    public Set<String> keys(String pattern) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.keys(pattern);
+        }
+    }
+
+
+    public ScanResult<String> scan(String cursor) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.scan(cursor);
+        }
+    }
+
+
+    public ScanResult<byte[]> scan(byte[] cursor) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.scan(cursor);
+        }
+    }
+
 
 
 }
