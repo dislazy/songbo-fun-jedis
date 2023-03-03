@@ -281,6 +281,48 @@ public class RedisTools {
         }
     }
 
+    public Long hset(String key, String field, String value) {
+        return hset(key, field, value, null);
+    }
+
+
+    public Long hset(String key, String field, String value, Expire exp) {
+        Long opCount = null;
+        try (Jedis jedis = getJedis()) {
+            opCount = jedis.hset(key, field, value);
+            if (exp != null) {
+                jedis.expire(key, exp.getTime());
+            }
+        }
+        return opCount;
+    }
+
+
+    public Long hset(byte[] key, byte[] field, byte[] value) {
+        return hset(key, field, value, null);
+    }
+
+
+    public Long hset(byte[] key, byte[] field, byte[] value, Expire exp) {
+        Long opCount = null;
+        try (Jedis jedis = getJedis()) {
+            opCount = jedis.hset(key, field, value);
+            if (exp != null) {
+                jedis.expire(key, exp.getTime());
+            }
+        }
+        return opCount;
+
+    }
+
+
+    public boolean hsetnx(String key, String field, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hsetnx(key, field, value) > 0L;
+        }
+    }
+
+
 
 
 }
