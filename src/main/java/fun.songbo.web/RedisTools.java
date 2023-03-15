@@ -365,5 +365,18 @@ public class RedisTools {
         }
     }
 
+    public Boolean hexists(byte[] key, byte[] field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hexists(key, field);
+        }
+    }
+
+
+    public Boolean hexists(String key, String field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hexists(key, field);
+        }
+    }
+
 
 }
