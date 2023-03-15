@@ -352,4 +352,18 @@ public class RedisTools {
     }
 
 
+    public Long hdel(String key, String field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hdel(key, field);
+        }
+    }
+
+
+    public Long hdel(byte[] key, byte[] field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hdel(key, field);
+        }
+    }
+
+
 }
