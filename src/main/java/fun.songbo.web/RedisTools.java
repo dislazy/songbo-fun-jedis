@@ -11,6 +11,7 @@ import redis.clients.jedis.resps.ScanResult;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -323,6 +324,32 @@ public class RedisTools {
     }
 
 
+    public String hget(String key, String field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hget(key, field);
+        }
+    }
+
+
+    public byte[] hget(byte[] key, byte[] field) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hget(key, field);
+        }
+    }
+
+    /**
+     * 该命令不建议使用，所以标记过期
+     *
+     * @param key
+     * @return
+     */
+
+    @Deprecated
+    public Map<String, String> hgetAll(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hgetAll(key);
+        }
+    }
 
 
 }
