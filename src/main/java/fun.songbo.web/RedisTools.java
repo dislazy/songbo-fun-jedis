@@ -399,4 +399,25 @@ public class RedisTools {
         }
     }
 
+
+
+    public Long hlen(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hlen(key);
+        }
+    }
+
+
+    public Long lpush(String key, String... values) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lpush(key, values);
+        }
+    }
+
+
+    public Long lpush(byte[] key, byte[]... values) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lpush(key, values);
+        }
+    }
 }
