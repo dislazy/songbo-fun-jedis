@@ -420,4 +420,17 @@ public class RedisTools {
             return jedis.lpush(key, values);
         }
     }
+
+    public String lpop(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lpop(key);
+        }
+    }
+
+
+    public List<String> lrange(String key, long start, long end) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lrange(key, start, end);
+        }
+    }
 }
