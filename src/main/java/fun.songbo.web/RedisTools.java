@@ -379,4 +379,24 @@ public class RedisTools {
     }
 
 
+    public Set<String> hkeys(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hkeys(key);
+        }
+    }
+
+
+    public Set<byte[]> hkeys(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.keys(key);
+        }
+    }
+
+
+    public Long hlen(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hlen(key);
+        }
+    }
+
 }
