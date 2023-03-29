@@ -454,4 +454,53 @@ public class RedisTools {
             return jedis.lpop(key);
         }
     }
+    public Long rpush(String key, String... values) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.rpush(key, values);
+        }
+    }
+
+
+    public String rpop(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.rpop(key);
+        }
+    }
+
+
+    public Long lrem(String key, long count, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lrem(key, count, value);
+        }
+    }
+
+
+    public Long lrem(byte[] key, long count, byte[] value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lrem(key, count, value);
+        }
+    }
+
+
+    public String ltrim(String key, long start, long end) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.ltrim(key, start, end);
+        }
+    }
+
+
+    public String lindex(String key, long index) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lindex(key, index);
+        }
+    }
+
+
+    public byte[] lindex(byte[] key, long index) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lindex(key, index);
+        }
+    }
+
+
 }
