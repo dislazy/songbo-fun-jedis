@@ -433,4 +433,25 @@ public class RedisTools {
             return jedis.lrange(key, start, end);
         }
     }
+
+
+    public List<byte[]> lrange(byte[] key, long start, long end) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lrange(key, start, end);
+        }
+    }
+
+
+    public Long llen(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.llen(key);
+        }
+    }
+
+
+    public byte[] lpop(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.lpop(key);
+        }
+    }
 }
