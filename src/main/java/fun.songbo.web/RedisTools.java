@@ -8,19 +8,17 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.params.SetParams;
 import redis.clients.jedis.resps.ScanResult;
-
+import redis.clients.jedis.resps.Tuple;
 import java.time.Duration;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <p>
  *
  * </p>
  *
- * @author songbo
- * @date 2023-01-05 18:20
+ * @author jack
+ * @date 2022-12-07 10:37
  * @since
  */
 public class RedisTools {
@@ -250,6 +248,7 @@ public class RedisTools {
         }
     }
 
+
     public Long incr(String key) {
         try (Jedis jedis = getJedis()) {
             return jedis.incr(key);
@@ -262,6 +261,8 @@ public class RedisTools {
             return jedis.incrBy(key, increment);
         }
     }
+
+
     public Set<String> keys(String pattern) {
         try (Jedis jedis = getJedis()) {
             return jedis.keys(pattern);
@@ -281,6 +282,7 @@ public class RedisTools {
             return jedis.scan(cursor);
         }
     }
+
 
     public Long hset(String key, String field, String value) {
         return hset(key, field, value, null);
@@ -365,6 +367,7 @@ public class RedisTools {
         }
     }
 
+
     public Boolean hexists(byte[] key, byte[] field) {
         try (Jedis jedis = getJedis()) {
             return jedis.hexists(key, field);
@@ -400,7 +403,6 @@ public class RedisTools {
     }
 
 
-
     public Long hlen(byte[] key) {
         try (Jedis jedis = getJedis()) {
             return jedis.hlen(key);
@@ -420,6 +422,7 @@ public class RedisTools {
             return jedis.lpush(key, values);
         }
     }
+
 
     public String lpop(String key) {
         try (Jedis jedis = getJedis()) {
@@ -454,6 +457,8 @@ public class RedisTools {
             return jedis.lpop(key);
         }
     }
+
+
     public Long rpush(String key, String... values) {
         try (Jedis jedis = getJedis()) {
             return jedis.rpush(key, values);
@@ -499,6 +504,428 @@ public class RedisTools {
     public byte[] lindex(byte[] key, long index) {
         try (Jedis jedis = getJedis()) {
             return jedis.lindex(key, index);
+        }
+    }
+
+
+    public Long sadd(String key, String... members) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.sadd(key, members);
+        }
+    }
+
+
+    public Long sadd(byte[] key, byte[]... members) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.sadd(key, members);
+        }
+    }
+
+
+    public Long scard(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.scard(key);
+        }
+    }
+
+
+    public Long scard(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.scard(key);
+        }
+    }
+
+
+    public Long srem(String key, String... members) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.srem(key, members);
+        }
+    }
+
+
+    public Long srem(byte[] key, byte[]... members) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.srem(key, members);
+        }
+    }
+
+
+    public Set<String> smembers(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.smembers(key);
+        }
+    }
+
+
+    public Boolean sismember(String key, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.sismember(key, member);
+        }
+    }
+
+
+    public Boolean sismember(byte[] key, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.sismember(key, member);
+        }
+    }
+
+
+    public String spop(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.spop(key);
+        }
+    }
+
+
+    public byte[] spop(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.spop(key);
+        }
+    }
+
+
+    public Long zadd(String key, double score, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zadd(key, score, member);
+        }
+    }
+
+
+    public Long zadd(byte[] key, double score, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zadd(key, score, member);
+        }
+    }
+
+
+    public Long zadd(String key, Map<String, Double> scoreMembers) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zadd(key, scoreMembers);
+        }
+    }
+
+
+    public Long zrem(String key, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrem(key, member);
+        }
+    }
+
+
+    public Long zrem(byte[] key, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrem(key, member);
+        }
+    }
+
+
+    public Long zRemRangeByRank(String key, long start, long end) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zremrangeByRank(key, start, end);
+        }
+    }
+
+
+    public Long zRemRangeByRank(byte[] key, long start, long end) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zremrangeByRank(key, start, end);
+        }
+    }
+
+
+    public Long zremrangeByScore(String key, long min, long max) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zremrangeByScore(key, min, max);
+        }
+    }
+
+
+    public Long zrank(String key, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrank(key, member);
+        }
+    }
+
+
+    public Long zrank(byte[] key, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrank(key, member);
+        }
+    }
+
+
+    public Long zrevrank(String key, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrevrank(key, member);
+        }
+    }
+
+
+    public Long zrevrank(byte[] key, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrevrank(key, member);
+        }
+    }
+
+
+    public Set<String> zrange(String key, long min, long max) {
+        List<String> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrange(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<byte[]> zrange(byte[] key, long min, long max) {
+        List<byte[]> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrange(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<String> zrevrange(String key, long min, long max) {
+        List<String> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrange(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<byte[]> zrevrange(byte[] key, long min, long max) {
+        List<byte[]> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrange(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrangeWithScores(String key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrangeWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrangeWithScores(byte[] key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrangeWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrangeByScoreWithScores(String key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrangeByScoreWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<String> zrevrangebyscore(String key, double max, double min, int offset, int count) {
+        List<String> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeByScore(key, max, min, offset, count);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrevrangeByScoreWithScores(String key, double max, double min, int offset, int count) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeByScoreWithScores(key, max, min, offset, count);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public List<String> zrangeByScore(String key, long min, long max) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zrangeByScore(key, min, max);
+        }
+    }
+
+
+    public Set<Tuple> zrangeByScoreWithScores(byte[] key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrangeByScoreWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrevrangeWithScores(String key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrevrangeWithScores(byte[] key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrevrangeByScoreWithScores(String key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeByScoreWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Set<Tuple> zrevrangeByScoreWithScores(byte[] key, long min, long max) {
+        List<Tuple> result = null;
+        try (Jedis jedis = getJedis()) {
+            result = jedis.zrevrangeByScoreWithScores(key, min, max);
+        }
+        if (Objects.nonNull(result) && result.size() > 0) {
+            return new HashSet<>(result);
+        }
+        return null;
+    }
+
+
+    public Double zincrby(String key, double incrScore, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zincrby(key, incrScore, member);
+        }
+    }
+
+
+    public Double zincrby(byte[] key, double incrScore, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zincrby(key, incrScore, member);
+        }
+    }
+
+
+    public Double zscore(String key, String member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zscore(key, member);
+        }
+    }
+
+
+    public Double zscore(byte[] key, byte[] member) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zscore(key, member);
+        }
+    }
+
+
+    public Long zcard(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zcard(key);
+        }
+    }
+
+
+    public Long zcard(byte[] key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zcard(key);
+        }
+    }
+
+
+    public Long zcount(String key, double min, double max) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.zcount(key, min, max);
+        }
+    }
+
+
+    public Long hincrBy(String key, String field, long value) {
+        Objects.requireNonNull(key);
+        Objects.requireNonNull(field);
+        try (Jedis jedis = getJedis()) {
+            return jedis.hincrBy(key, field, value);
+        }
+    }
+
+
+    public String hmset(String key, Map<String, String> hash) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hmset(key, hash);
+        }
+    }
+
+
+    public List<String> hmget(String key, String... fields) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hmget(key, fields);
+        }
+    }
+
+
+    public Long decr(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.decr(key);
+        }
+    }
+
+
+    public Long decrBy(String key, long decrement) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.decrBy(key, decrement);
         }
     }
 
