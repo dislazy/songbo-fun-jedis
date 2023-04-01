@@ -1,10 +1,6 @@
 package fun.songbo.web;
 
-import fun.songbo.web.commons.Expire;
-import fun.songbo.web.config.RedisConfig;
 import junit.framework.TestCase;
-import org.junit.Test;
-
 /**
  * <p>
  *
@@ -16,6 +12,9 @@ import org.junit.Test;
  */
 public class RedisToolsTest extends TestCase {
 
+    public void testRedisTools(){
 
+
+    }
 
 }
