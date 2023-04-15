@@ -3,6 +3,9 @@ package fun.songbo.web;
 import fun.songbo.web.commons.EXPX;
 import fun.songbo.web.config.RedisConfig;
 import junit.framework.TestCase;
+
+import java.util.HashMap;
+
 /**
  * <p>
  *
@@ -39,4 +42,13 @@ public class RedisToolsTest extends TestCase {
 //        redisTools.set("","", EXPX.MILLISECONDS)
     }
 
+    public void testMset(){
+        initRedisTools();
+        redisTools.hmset("abc",new HashMap<>());
+    }
+
+    public void testMget(){
+        initRedisTools();
+        redisTools.hmget("abc","map data");
+    }
 }
