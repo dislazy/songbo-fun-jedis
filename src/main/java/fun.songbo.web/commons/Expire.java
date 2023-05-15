@@ -9,6 +9,17 @@ public class Expire {
      * 10秒钟
      */
     public static Expire s10 = new Expire(10);
+
+    public static Expire s15 = new Expire(15);
+
+    /**
+     * 30s
+     */
+    public static Expire s30 = new Expire(30);
+
+    public static Expire s45 = new Expire(35);
+
+
     /**
      * 1分钟
      */
