@@ -51,4 +51,9 @@ public class RedisToolsTest extends TestCase {
         initRedisTools();
         redisTools.hmget("abc","map data");
     }
+
+    public void testName() {
+    }
+
+
 }
