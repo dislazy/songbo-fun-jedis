@@ -24,14 +24,35 @@ public class Expire {
      * 1分钟
      */
     public static Expire m1 = new Expire(60);
+
+    /**
+     * 2 mins
+     */
+    public static Expire m2 = new Expire(120);
+
     /**
      * 3分钟
      */
     public static Expire m3 = new Expire(180);
     /**
+     * 4 mins
+     */
+    public static Expire m4 = new Expire(240);
+
+    /**
      * 5分钟
      */
     public static Expire m5 = new Expire(300);
+    /**
+     * 6 mins
+     */
+    public static Expire m6 = new Expire(360);
+    /**
+     * 7 mins
+     */
+    public static Expire m7 = new Expire(420);
+
+
     /**
      * 10分钟
      */
