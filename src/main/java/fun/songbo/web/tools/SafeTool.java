@@ -23,4 +23,38 @@ public class SafeTool {
     }
 
 
+    /**
+     * 对象转Long
+     *
+     * @param obj
+     * @return
+     */
+    public static Long getLong(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Long.valueOf(obj.toString());
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
+     * 对象转Double
+     *
+     * @param obj
+     * @return
+     */
+    public static Double getDouble(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Double.valueOf(obj.toString());
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
 }
