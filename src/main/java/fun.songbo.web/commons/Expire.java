@@ -52,6 +52,15 @@ public class Expire {
      */
     public static Expire m7 = new Expire(420);
 
+    /**
+     * m8
+     */
+    public static Expire m8 = new Expire(480);
+
+    /**
+     * m9
+     */
+    public static Expire m9 = new Expire(540);
 
     /**
      * 10分钟
@@ -93,6 +102,11 @@ public class Expire {
      * 7天
      */
     public static Expire d7 = new Expire(60 * 60 * 24 * 7);
+    /**
+     * 14天
+     */
+    public static Expire d14 = new Expire(60 * 60 * 24 * 14);
+
     /**
      * 30天
      */
