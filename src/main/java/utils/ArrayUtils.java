@@ -1,6 +1,8 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -40,4 +42,23 @@ public class ArrayUtils {
         }
         return result;
     }
+
+    /**
+     * 数组转list List<String>
+     *
+     * @param array
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> asList(T[] array) {
+        if (array == null) {
+            return null;
+        }
+        List<T> list = new ArrayList<>();
+        for (T t : array) {
+            list.add(t);
+        }
+        return list;
+    }
+
 }
