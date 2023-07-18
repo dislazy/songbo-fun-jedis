@@ -61,4 +61,22 @@ public class ArrayUtils {
         return list;
     }
 
+    /**
+     * 转成字符串数组
+     *
+     * @param arrays 数组
+     * @param <T>    类型
+     * @return 字符串数组
+     */
+    public static <T> String[] asStrArray(T[] arrays) {
+        if (arrays == null) {
+            return null;
+        }
+        String[] strs = new String[arrays.length];
+        for (int i = 0; i < arrays.length; i++) {
+            strs[i] = arrays[i] == null ? null : arrays[i].toString();
+        }
+        return strs;
+    }
+
 }
