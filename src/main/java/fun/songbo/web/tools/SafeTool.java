@@ -56,5 +56,23 @@ public class SafeTool {
         }
         return null;
     }
+    /**
+     * 对象转Boolean
+     *
+     * @param obj
+     * @return
+     */
+    public static Boolean getBoolean(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Boolean.valueOf(obj.toString());
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    
 
 }
