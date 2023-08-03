@@ -69,10 +69,19 @@ public class SafeTool {
         try {
             return Boolean.valueOf(obj.toString());
         } catch (Exception e) {
-        }
+        }   
         return null;
     }
 
-    
+    /**
+     * 转字符串
+     *
+     * @param obj
+     * @return
+     */
+    public static String getString(Object obj) {
+        return obj == null ? null : obj.toString();
+    }
+
 
 }
