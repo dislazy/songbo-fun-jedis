@@ -79,4 +79,71 @@ public class ArrayUtils {
         return strs;
     }
 
+
+    /**
+     * 使用分隔符分割数组
+     *
+     * @param arrays    数组
+     * @param separator 分隔符 不配置,默认逗号
+     * @return 结果
+     */
+    public static String join(String[] arrays, String... separator) {
+        return join(asList(arrays), separator);
+    }
+    /**
+     * 使用分隔符分割数组
+     *
+     * @param arrays    数组
+     * @param separator 分隔符 不配置,默认逗号
+     * @return 结果
+     */
+    public static String join(Long[] arrays, String... separator) {
+        if (arrays == null || arrays.length == 0) {
+            return "";
+        }
+        return join(asStrArray(arrays), separator);
+    }
+
+    /**
+     * 使用分隔符分割数组
+     *
+     * @param arrays    数组
+     * @param separator 分隔符 不配置,默认逗号
+     * @return 结果
+     */
+    public static String join(Integer[] arrays, String... separator) {
+        if (arrays == null || arrays.length == 0) {
+            return "";
+        }
+        return join(asStrArray(arrays), separator);
+    }
+
+    /**
+     * 使用分隔符分割List
+     *
+     * @param strList   list
+     * @param separator 分隔符 不配置,默认逗号
+     * @return 结果
+     */
+    public static String join(List<String> strList, String... separator) {
+        if (strList == null || strList.size() == 0) {
+            return "";
+        }
+        String spt = ",";
+        if (separator != null && separator.length > 0) {
+            spt = separator[0];
+        }
+        String result = null;
+        for (String str : strList) {
+            if (str == null) {
+                continue;
+            }
+            if (result == null) {
+                result = str;
+            } else {
+                result += spt + str;
+            }
+        }
+        return result;
+    }
 }
