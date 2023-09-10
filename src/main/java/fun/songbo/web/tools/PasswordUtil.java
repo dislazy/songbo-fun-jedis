@@ -1,4 +1,4 @@
-package com.bigonelab.dashboard.common.tools;
+package fun.songbo.web.tools;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
