@@ -1,8 +1,8 @@
 package fun.songbo.web.tools;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * <p>
@@ -65,6 +65,42 @@ public class DateUtil {
     public static String getCurrentDateTime(String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.now().format(formatter);
+    }
+
+    /**
+     * Date转LocalDateTime
+     * 使用系统时区
+     *
+     * @param date
+     * @return
+     */
+    public static LocalDateTime dateToLocalDateTime(Date date) {
+        Instant instant = date.toInstant();
+        return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    /**
+     * LocalDateTime转Date
+     * 使用系统时区
+     *
+     * @param localDateTime
+     * @return
+     */
+    public static Date localDateTimeToDate(LocalDateTime localDateTime) {
+        ZonedDateTime zdt = localDateTime.atZone(ZoneId.systemDefault());
+        return Date.from(zdt.toInstant());
+    }
+
+    /**
+     * LocalDateTime日期转字符串
+     *
+     * @param localDateTime
+     * @param pattern
+     * @return
+     */
+    public static String localDateTimeToStr(LocalDateTime localDateTime, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return localDateTime.format(formatter);
     }
 
 }
