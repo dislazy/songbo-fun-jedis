@@ -1,5 +1,9 @@
 package fun.songbo.web.tools;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * <p>
  *
@@ -29,4 +33,38 @@ public class DateUtil {
     public static final String DATE_TIME_DETAIL = "yyyyMMddHHmmssSS";
     public static final String DATE_DAY = "yyyyMMdd";
     public static final String DATE_HOUR = "yyyyMMddHH";
+
+
+    /**
+     * 获取当前日期
+     */
+    public static String getCurrentDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(SQL_DATE);
+        return LocalDate.now().format(formatter);
+    }
+
+    /**
+     * 获取当前日期
+     */
+    public static String getCurrentDate(String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return LocalDate.now().format(formatter);
+    }
+
+    /**
+     * 获取当前时间
+     */
+    public static String getCurrentDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(SQL_TIME);
+        return LocalDateTime.now().format(formatter);
+    }
+
+    /**
+     * 获取当前时间
+     */
+    public static String getCurrentDateTime(String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return LocalDateTime.now().format(formatter);
+    }
+
 }
