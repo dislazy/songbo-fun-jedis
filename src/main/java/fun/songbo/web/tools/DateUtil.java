@@ -209,4 +209,8 @@ public class DateUtil {
     public static LocalDateTime getAfterYears(LocalDateTime localDateTime, int count) {
         return localDateTime.plusYears(count);
     }
+    public static LocalDateTime getAfterMonths(LocalDateTime localDateTime, int count) {
+        return localDateTime.plusMonths(count);
+    }
+
 }
