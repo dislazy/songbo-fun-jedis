@@ -1,5 +1,6 @@
 package fun.songbo.web.tools;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -130,6 +131,46 @@ public class DateUtil {
     public static String dateToStr(Date date, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
+    }
+
+    /**
+     * Date字符串转字符串
+     *
+     * @param str
+     * @return
+     */
+    public static String strToStr(String str) {
+        Date date = strToDate(str);
+        SimpleDateFormat sdf = new SimpleDateFormat(SQL_DATE);
+        return sdf.format(date);
+    }
+
+    /**
+     * Date日期转字符串
+     *
+     * @param date
+     * @return
+     */
+    public static String dateToStr(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(SQL_TIME);
+        return sdf.format(date);
+    }
+
+    /**
+     * 字符转转Date日期
+     *
+     * @param dateStr
+     * @return
+     */
+    public static Date strToDate(String dateStr) {
+        SimpleDateFormat sdf = new SimpleDateFormat(SQL_DATE);
+        try {
+            return sdf.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
