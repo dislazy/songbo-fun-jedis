@@ -1,5 +1,6 @@
 package fun.songbo.web.tools;
 
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -101,6 +102,34 @@ public class DateUtil {
     public static String localDateTimeToStr(LocalDateTime localDateTime, String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return localDateTime.format(formatter);
+    }
+
+    public static String localDateToStr(LocalDate localDate, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return localDate.format(formatter);
+    }
+
+    /**
+     * LocalDateTime日期转字符串
+     *
+     * @param localDateTime
+     * @return
+     */
+    public static String localDateTimeToStr(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(SQL_DATE);
+        return localDateTime.format(formatter);
+    }
+
+    /**
+     * Date日期转字符串
+     *
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String dateToStr(Date date, String pattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
     }
 
 }
