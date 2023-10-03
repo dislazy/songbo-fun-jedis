@@ -173,4 +173,15 @@ public class DateUtil {
         return null;
     }
 
+    /**
+     * 将字符串日期解析为java.time.LocalDateTime
+     *
+     * @param dateTimeStr
+     * @param pattern
+     * @return
+     */
+    public static LocalDateTime strToLocalDateTime(String dateTimeStr, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return LocalDateTime.parse(dateTimeStr, formatter);
+    }
 }
