@@ -213,4 +213,9 @@ public class DateUtil {
         return localDateTime.plusMonths(count);
     }
 
+    public static LocalDate getAfterMonths(LocalDate localDate, int count) {
+        return localDate.plusMonths(count);
+    }
+
+
 }
