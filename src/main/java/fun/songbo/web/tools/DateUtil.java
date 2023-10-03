@@ -194,4 +194,19 @@ public class DateUtil {
     public static LocalDateTime getStartDateTimeWithHMS(LocalDateTime localDateTime) {
         return LocalDateTime.of(localDateTime.toLocalDate(), LocalTime.MIN);
     }
+
+    /**
+     * 结束日期，补齐" 23:59:59"
+     *
+     * @param localDateTime
+     * @return
+     */
+    public static LocalDateTime getEndDateWithHMS(LocalDateTime localDateTime) {
+        return LocalDateTime.of(localDateTime.toLocalDate(), LocalTime.MAX);
+    }
+
+
+    public static LocalDateTime getAfterYears(LocalDateTime localDateTime, int count) {
+        return localDateTime.plusYears(count);
+    }
 }
