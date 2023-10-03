@@ -217,5 +217,8 @@ public class DateUtil {
         return localDate.plusMonths(count);
     }
 
-
+    public static String getBeforeMonths(String monthStr, int count) {
+        monthStr += "-01";
+        return localDateToStr(getAfterMonths(LocalDate.parse(monthStr), -count), SQL_MONTH);
+    }
 }
