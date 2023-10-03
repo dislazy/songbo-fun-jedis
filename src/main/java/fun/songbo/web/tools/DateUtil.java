@@ -184,4 +184,14 @@ public class DateUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.parse(dateTimeStr, formatter);
     }
+
+    /**
+     * 开始日期，补齐" 00:00:00"
+     *
+     * @param localDateTime
+     * @return
+     */
+    public static LocalDateTime getStartDateTimeWithHMS(LocalDateTime localDateTime) {
+        return LocalDateTime.of(localDateTime.toLocalDate(), LocalTime.MIN);
+    }
 }
