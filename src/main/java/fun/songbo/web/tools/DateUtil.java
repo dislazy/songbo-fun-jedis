@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -241,4 +242,14 @@ public class DateUtil {
     public static LocalDateTime getAfterSeconds(LocalDateTime localDateTime, int count) {
         return localDateTime.plusSeconds(count);
     }
+    /**
+     * 获得当前年的第一天
+     *
+     * @param
+     * @return
+     */
+    public static LocalDateTime getYearFirstDay(LocalDateTime localDateTime) {
+        return localDateTime.with(TemporalAdjusters.firstDayOfYear());
+    }
+
 }
