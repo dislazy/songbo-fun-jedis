@@ -273,4 +273,15 @@ public class DateUtil {
     public static LocalDateTime getMonthFirstDay(LocalDateTime localDateTime) {
         return localDateTime.with(TemporalAdjusters.firstDayOfMonth());
     }
+
+    /**
+     * 获得当前月的最后一天
+     *
+     * @param
+     * @return
+     */
+    public static LocalDateTime getMonthLastDay(LocalDateTime localDateTime) {
+        return localDateTime.with(TemporalAdjusters.lastDayOfMonth());
+    }
 }
+
