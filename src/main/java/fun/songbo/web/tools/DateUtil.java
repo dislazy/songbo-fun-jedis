@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * <p>
@@ -224,5 +226,19 @@ public class DateUtil {
 
     public static LocalDateTime getAfterDays(LocalDateTime localDateTime, int count) {
         return localDateTime.plusDays(count);
+    }
+    public static Date getAfterDays(Date date, int count) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, count);
+        return calendar.getTime();
+    }
+
+    public static LocalDateTime getAfterMinutes(LocalDateTime localDateTime, int count) {
+        return localDateTime.plusMinutes(count);
+    }
+
+    public static LocalDateTime getAfterSeconds(LocalDateTime localDateTime, int count) {
+        return localDateTime.plusSeconds(count);
     }
 }
