@@ -252,4 +252,25 @@ public class DateUtil {
         return localDateTime.with(TemporalAdjusters.firstDayOfYear());
     }
 
+
+    /**
+     * 获得当前年的最后一天
+     *
+     * @param
+     * @return
+     */
+    public static LocalDateTime getYearLastDay(LocalDateTime localDateTime) {
+        return localDateTime.with(TemporalAdjusters.lastDayOfYear());
+    }
+
+
+    /**
+     * 获得当前月的第一天
+     *
+     * @param
+     * @return
+     */
+    public static LocalDateTime getMonthFirstDay(LocalDateTime localDateTime) {
+        return localDateTime.with(TemporalAdjusters.firstDayOfMonth());
+    }
 }
