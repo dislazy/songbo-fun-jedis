@@ -221,4 +221,8 @@ public class DateUtil {
         monthStr += "-01";
         return localDateToStr(getAfterMonths(LocalDate.parse(monthStr), -count), SQL_MONTH);
     }
+
+    public static LocalDateTime getAfterDays(LocalDateTime localDateTime, int count) {
+        return localDateTime.plusDays(count);
+    }
 }
