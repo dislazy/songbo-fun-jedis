@@ -146,4 +146,22 @@ public class ArrayUtils {
         }
         return result;
     }
+
+    /**
+     * 字符串分割成list
+     *
+     * @param str   字符串
+     * @param regex 分隔正则,默认逗号
+     * @return list
+     */
+    public static List<String> split(String str, String... regex) {
+        if (str == null || str.isEmpty() || " ".equals(str))  {
+            return null;
+        }
+        String spt = ",";
+        if (regex != null && regex.length > 0) {
+            spt = regex[0];
+        }
+        return asList(str.split(spt));
+    }
 }
