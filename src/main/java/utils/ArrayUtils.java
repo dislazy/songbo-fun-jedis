@@ -164,4 +164,32 @@ public class ArrayUtils {
         }
         return asList(str.split(spt));
     }
+
+    /**
+     * 数组末尾追加
+     *
+     * @param objects
+     * @param object
+     * @return
+     */
+    public static Object[] append(Object[] objects, Object object) {
+        if (objects == null) {
+            objects = new Object[]{};
+        }
+        Object[] newObjects = new Object[objects.length + 1];
+        System.arraycopy(objects, 0, newObjects, 0, newObjects.length - 1);
+        newObjects[objects.length] = object;
+        return newObjects;
+    }
+
+    public static String[] append(String[] objects, String object) {
+        if (objects == null) {
+            objects = new String[]{};
+        }
+        String[] newObjects = new String[objects.length + 1];
+        System.arraycopy(objects, 0, newObjects, 0, newObjects.length - 1);
+        newObjects[objects.length] = object;
+        return newObjects;
+    }
+
 }
