@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.Calendar;
@@ -295,6 +296,28 @@ public class DateUtil {
      */
     public static LocalDateTime getWeekFirstDay(LocalDateTime localDateTime, Locale locale) {
         return localDateTime.with(WeekFields.of(locale == null ? Locale.CHINA : locale).dayOfWeek(), 1);
+    }
+    /**
+     * 获得当前星期的最后一天
+     *
+     * @param localDateTime
+     * @param locale        默认默认Locale.CHINA 周日为一周的第一天
+     * @return
+     */
+    public static LocalDateTime getWeekLastDay(LocalDateTime localDateTime, Locale locale) {
+        return localDateTime.with(WeekFields.of(locale == null ? Locale.CHINA : locale).dayOfWeek(), 7);
+    }
+
+
+    /**
+     * 计算两个日期之间相差年数
+     *
+     * @param smallDateTime 较小的时间
+     * @param bigDateTime   较大的时间
+     * @return 相差年数
+     */
+    public static int getYearDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.YEARS);
     }
 
 }
