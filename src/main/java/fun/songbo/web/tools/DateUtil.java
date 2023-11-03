@@ -5,9 +5,11 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  * <p>
@@ -283,5 +285,17 @@ public class DateUtil {
     public static LocalDateTime getMonthLastDay(LocalDateTime localDateTime) {
         return localDateTime.with(TemporalAdjusters.lastDayOfMonth());
     }
+
+    /**
+     * 获得当前星期的第一天
+     *
+     * @param localDateTime
+     * @param locale        默认Locale.CHINA 周日为一周的第一天
+     * @return
+     */
+    public static LocalDateTime getWeekFirstDay(LocalDateTime localDateTime, Locale locale) {
+        return localDateTime.with(WeekFields.of(locale == null ? Locale.CHINA : locale).dayOfWeek(), 1);
+    }
+
 }
 
