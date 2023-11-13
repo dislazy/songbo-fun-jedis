@@ -320,5 +320,49 @@ public class DateUtil {
         return (int) smallDateTime.until(bigDateTime, ChronoUnit.YEARS);
     }
 
+    /**
+     * 计算两个日期之间相差月数
+     *
+     * @param smallDateTime 较小的时间
+     * @param bigDateTime   较大的时间
+     * @return 相差月数
+     */
+    public static int getMonthDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.MONTHS);
+    }
+
+    /**
+     * 计算两个日期之间相差的天数
+     *
+     * @param smallDateTime 较小的时间
+     * @param bigDateTime   较大的时间
+     * @return 相差天数
+     */
+    public static int getDayDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.DAYS);
+    }
+
+    /**
+     * 计算两个日期之间相差小时数
+     *
+     * @param smallDateTime 较小的时间
+     * @param bigDateTime   较大的时间
+     * @return 相差小时数
+     */
+    public static int getHourDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.HOURS);
+    }
+
+    /**
+     * 计算两个日期之间相差分钟数
+     *
+     * @param smallDateTime
+     * @param bigDateTime
+     * @return 相差分钟数
+     */
+    public static int getMinutesDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.MINUTES);
+    }
+
 }
 
