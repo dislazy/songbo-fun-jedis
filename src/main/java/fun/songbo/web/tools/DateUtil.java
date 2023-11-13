@@ -364,5 +364,16 @@ public class DateUtil {
         return (int) smallDateTime.until(bigDateTime, ChronoUnit.MINUTES);
     }
 
+    /**
+     * 计算两个日期之间相差秒数
+     *
+     * @param smallDateTime
+     * @param bigDateTime
+     * @return 相差秒数
+     */
+    public static int getSecondsDiff(LocalDateTime smallDateTime, LocalDateTime bigDateTime) {
+        return (int) smallDateTime.until(bigDateTime, ChronoUnit.SECONDS);
+    }
+
 }
 
