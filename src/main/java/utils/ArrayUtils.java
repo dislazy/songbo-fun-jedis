@@ -1,5 +1,8 @@
 package utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +17,8 @@ import java.util.List;
  * @since
  */
 public class ArrayUtils {
+    private static final Logger log = LoggerFactory.getLogger(ArrayUtils.class);
+
     /**
      * 合并数组
      *
@@ -190,6 +195,43 @@ public class ArrayUtils {
         System.arraycopy(objects, 0, newObjects, 0, newObjects.length - 1);
         newObjects[objects.length] = object;
         return newObjects;
+    }
+
+
+    /**
+     * 字符串切割成 Long 数组
+     *
+     * @param str   字符串
+     * @param regex 切割正则，默认逗号
+     * @return Long 数组
+     */
+    public static Long[] splitToLongs(String str, String... regex) {
+        List<String> list = split(str, regex);
+        if (list == null) {
+            return null;
+        }
+        Long[] longs = new Long[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            longs[i] = getLong(list.get(i));
+        }
+        return longs;
+    }
+    /**
+     * 对象转Long
+     *
+     * @param obj
+     * @return
+     */
+    public static Long getLong(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Long.valueOf(obj.toString());
+        } catch (Exception e) {
+            log.error("[getLong]error: ",e);
+        }
+        return null;
     }
 
 }
