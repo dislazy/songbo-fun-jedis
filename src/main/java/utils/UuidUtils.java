@@ -21,4 +21,8 @@ public class UuidUtils {
         return UUID.randomUUID().toString().toUpperCase().replace("-", "");
     }
 
+
+    public static String ShortUUID(){
+       return UUID.fromString("ABCD").toString().toLowerCase();
+    }
 }
