@@ -423,6 +423,35 @@ public class DateUtil {
         return 60 * 60 * 24 * 30 * 1000L;
     }
 
+    /**
+     * 计算两个日期之间相差天数，结果保留2位小数
+     *
+     * @param start 开始时间
+     * @param end   结束时间
+     * @return
+     */
+    public static Double diffBetweenDays(String start, String end) {
+        double milli = 0;
+        try {
+            // 字符串转换日期
+            Date dateStart = strToDate(start);
+            Date dateEnd = strToDate(end);
+            if (dateStart == null || dateEnd == null) {
+                return 0.0;
+            }
+            // 日期转换为 localdate
+            LocalDateTime localDateTimeStart = dateToLocalDateTime(dateStart);
+            LocalDateTime localDateTimeEnd = dateToLocalDateTime(dateEnd);
+            // 计算相差天数
+            int dayDiff = getDayDiff(localDateTimeStart, localDateTimeEnd);
+            milli = (double) dayDiff / 30;
+        } catch (Exception e) {
+            return 0.0;
+        }
+        return milli;
+    }
+
+
 
 }
 
