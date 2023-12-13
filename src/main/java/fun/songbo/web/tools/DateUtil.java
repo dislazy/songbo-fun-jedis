@@ -7,10 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * <p>
@@ -451,7 +448,49 @@ public class DateUtil {
         return milli;
     }
 
+    /**
+     * 获取日期开始时间
+     *
+     * @param dateRangeBeginType
+     * @param now
+     * @return
+     */
+    public static String getDateRangeBegin(Integer dateRangeBeginType, LocalDate now) {
+        // 0-全部，1-1M，2-3M,3-6M，4-YTD，5-1Y，默认0-全部
+        if (Objects.isNull(dateRangeBeginType) || dateRangeBeginType == 0) {
+            return null;
+        }
+        int count;
+        switch (dateRangeBeginType) {
+            case 1:
+                count = -1;
+                break;
+            case 2:
+                count = -3;
+                break;
+            case 3:
+                count = -6;
+                break;
+            case 4:
+                count = (int) now.until(LocalDate.of(now.getYear(), 1, 1), ChronoUnit.MONTHS);
+                break;
+            case 5:
+                count = -12;
+                break;
+            default:
+                return null;
+        }
+        return now.plusMonths(count).toString();
+    }
 
+    /**
+     * 字符串转 LocalDate
+     * @param content
+     * @return
+     */
+    public static LocalDate strToLocalDate(String content) {
+        return LocalDate.parse(content, DateTimeFormatter.ofPattern(SQL_DATE));
+    }
 
 }
 
