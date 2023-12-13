@@ -392,6 +392,37 @@ public class DateUtil {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(Long.valueOf(seconds + "000")));
     }
+    /**
+     * 时间时期转换为豪秒
+     *
+     * @param text
+     * @return
+     */
+    public static long stringToMilliSecond(String text) {
+        long milli = 0;
+        try {
+            Date date = strToDate(text);
+            if (date == null) {
+                return 0;
+            }
+            LocalDateTime localDateTime = dateToLocalDateTime(date);
+            milli = LocalDateTime.from(localDateTime).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        } catch (Exception e) {
+            return 0;
+        }
+        return milli;
+    }
+
+
+    /**
+     * 一个月对应的毫秒数
+     *
+     * @return
+     */
+    public static long getMonth() {
+        return 60 * 60 * 24 * 30 * 1000L;
+    }
+
 
 }
 
