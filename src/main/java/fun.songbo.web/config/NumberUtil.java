@@ -80,4 +80,22 @@ public class NumberUtil {
             }
         }
     }
+
+
+    public static BigDecimal percentStrToBigDecimal(String str) {
+        try {
+            NumberFormat nf = NumberFormat.getPercentInstance();
+            return BigDecimal.valueOf(nf.parse(str).doubleValue());
+        } catch (Exception var2) {
+            return null;
+        }
+    }
+
+    public static Double strToDouble(String str) {
+        try {
+            return Double.parseDouble(str);
+        } catch (Exception var2) {
+            return null;
+        }
+    }
 }
