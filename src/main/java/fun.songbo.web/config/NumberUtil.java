@@ -98,4 +98,44 @@ public class NumberUtil {
             return null;
         }
     }
+
+    public static Integer strToInteger(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception var2) {
+            return null;
+        }
+    }
+
+    public static BigDecimal turnWan(BigDecimal str) {
+        return turnWan(str, 6);
+    }
+
+    public static Double turnWan(Double str) {
+        return turnWan(str, 6);
+    }
+
+    public static String turnWan(String str) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
+            return "--";
+        } else {
+            BigDecimal b = new BigDecimal(str);
+            if (b.compareTo(BigDecimal.ZERO) == 0) {
+                return "--";
+            } else {
+                str = b.divide(new BigDecimal(10000), 6, 4).toString();
+                return str;
+            }
+        }
+    }
+    public static Double turnWan(Double str, Integer scale) {
+        if (str == null) {
+            return BigDecimal.ZERO.doubleValue();
+        } else {
+            BigDecimal b = BigDecimal.valueOf(str);
+            str = b.divide(new BigDecimal(10000), 6, 4).doubleValue();
+            return str;
+        }
+    }
+
 }
