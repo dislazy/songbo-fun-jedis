@@ -138,4 +138,45 @@ public class NumberUtil {
         }
     }
 
+
+    public static BigDecimal driveOneHundred(String str, Integer scale) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
+            return null;
+        } else if ("null".equals(str)) {
+            return null;
+        } else {
+            BigDecimal bigDecimal = null;
+
+            try {
+                bigDecimal = (new BigDecimal(str)).divide(new BigDecimal("100"), scale, 4);
+            } catch (Exception var4) {
+                LOGGER.error("[driveOneHundred] str: {},error :", str, var4);
+            }
+
+            return bigDecimal;
+        }
+    }
+
+    public static String checkVal(String str) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
+            return "--";
+        } else {
+            BigDecimal b = new BigDecimal(str);
+            return b.compareTo(BigDecimal.ZERO) == 0 ? "--" : str;
+        }
+    }
+
+    public static String addPercentage(String str) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
+            return "--";
+        } else {
+            BigDecimal b = new BigDecimal(str);
+            if (b.compareTo(BigDecimal.ZERO) == 0) {
+                return "--";
+            } else {
+                str = (new BigDecimal(str)).setScale(2, 5).toString();
+                return str + "%";
+            }
+        }
+    }
 }
