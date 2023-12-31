@@ -234,4 +234,50 @@ public class ArrayUtils {
         return null;
     }
 
+    /**
+     * 对象转Double
+     *
+     * @param obj
+     * @return
+     */
+    public static Double getDouble(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Double.valueOf(obj.toString());
+        } catch (Exception e) {
+            log.error("[getDouble]error: ",e);
+        }
+        return null;
+    }
+
+    /**
+     * 对象转Boolean
+     *
+     * @param obj
+     * @return
+     */
+    public static Boolean getBoolean(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        try {
+            return Boolean.valueOf(obj.toString());
+        } catch (Exception e) {
+            log.error("[getBoolean]error: ",e);
+        }
+        return null;
+    }
+
+    /**
+     * 转字符串
+     *
+     * @param obj
+     * @return
+     */
+    public static String getString(Object obj) {
+        return obj == null ? null : obj.toString();
+    }
+
 }
