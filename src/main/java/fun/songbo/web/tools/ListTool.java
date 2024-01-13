@@ -48,4 +48,19 @@ public class ListTool {
         return Joiner.on(symbol).join(data);
     }
 
+
+        /**
+     * @Description:    字符串转数组
+     */
+    public static List<String> string2List(String data, String symbol){
+        if(StringUtils.isBlank(data))
+        {
+            return new ArrayList<>();
+        }
+        return Lists.newArrayList(Splitter.on(symbol)
+                .trimResults()
+                .omitEmptyStrings()
+                .split(data));
+    }
+
 }
