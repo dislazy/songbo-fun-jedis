@@ -38,4 +38,14 @@ public class ListTool {
         }
     }
 
+        /**
+     * @Description:    数组转字符串
+     */
+    public static String list2String(List<String> data, String symbol){
+        if(CollectionUtils.isEmpty(data)){
+            return null;
+        }
+        return Joiner.on(symbol).join(data);
+    }
+
 }
