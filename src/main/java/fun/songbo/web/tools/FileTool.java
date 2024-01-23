@@ -1,0 +1,38 @@
+package fun.songbo.web.tools;
+
+
+import com.bigonelab.dashboard.common.constants.BusinessConstants;
+import com.bigonelab.dashboard.common.enums.ResponseCodeEnum;
+import com.bigonelab.dashboard.common.exception.SystemException;
+import com.bigonelab.dashboard.common.message.JsonMessage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+/**
+ * 文件工具工具类
+ *
+ * @author vincent@bigonelab.com
+ */
+@Component
+@Slf4j
+public class FileTool {
+    private final static String SAFARI = "Safari";
+    private final static String EDGE = "Edge";
+    private final static String MSIE = "MSIE";
+    private final static String TRIDENT = "Trident";
+
+    private static String filePath;
+
+
+}
