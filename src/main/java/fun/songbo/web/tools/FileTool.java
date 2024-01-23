@@ -35,4 +35,33 @@ public class FileTool {
     private static String filePath;
 
 
+    /**
+     * 方法名 getFileByte
+     * 参数 [file]
+     * 返回值 byte[]
+     * 描述 获取文件流
+     */
+    public static byte[] getFileByte(File file) {
+        try {
+            long fileSize = file.length();
+            if (fileSize > Integer.MAX_VALUE) {
+                return null;
+            }
+            FileInputStream fi = new FileInputStream(file);
+            byte[] buffer = new byte[(int) fileSize];
+            int offset = 0;
+            int numRead;
+            while (offset < buffer.length && (numRead = fi.read(buffer, offset, buffer.length - offset)) >= 0) {
+                offset += numRead;
+            }
+            // 确保所有数据均被读取
+            if (offset != buffer.length) {
+                throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR);
+            }
+            fi.close();
+            return buffer;
+        } catch (IOException e) {
+            throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
+        }
+    }
 }
