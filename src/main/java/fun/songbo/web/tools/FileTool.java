@@ -64,4 +64,27 @@ public class FileTool {
             throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
         }
     }
+
+        /**
+     * 方法名 saveFile
+     * 参数 [file]
+     * 返回值 void
+     * 描述 保存文件
+     */
+    public static void saveFile(MultipartFile file, String fileSrc) {
+        try {
+            File path = new File(filePath);
+            if (!path.exists()) {
+                path.mkdirs();
+            }
+            File newFile = new File(filePath + File.separator + fileSrc);
+//            if (!newFile.exists()) {
+//                newFile.createNewFile();
+//            }
+            file.transferTo(newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
+        }
+    }
 }
