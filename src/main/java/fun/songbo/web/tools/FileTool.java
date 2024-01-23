@@ -87,4 +87,18 @@ public class FileTool {
             throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
         }
     }
+
+        /**
+     * 删除文件
+     * @param fileSrc
+     */
+    public static void deleteFile(String fileSrc) {
+        File file = new File(filePath+fileSrc);
+        if (!file.exists()) {
+            log.warn("物理文件{}不存在，删除失败!",fileSrc);
+        }
+        file.delete();
+        log.warn("物理文件{}删除成功!",fileSrc);
+    }
+
 }
