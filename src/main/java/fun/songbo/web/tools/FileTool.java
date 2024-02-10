@@ -101,4 +101,49 @@ public class FileTool {
         log.warn("物理文件{}删除成功!",fileSrc);
     }
 
+        /**
+     * 方法名 downloadFile
+     * 参数 [fileName, fileContent, request, response]
+     * 返回值 cn.com.chinaventure.common.message.JsonMessageTsVO
+     * 描述:文件下载
+     */
+    public static JsonMessage downloadFile(String fileName, String fileSrc, HttpServletRequest request, HttpServletResponse response) throws SystemException {
+        try {
+            File file = new File(filePath + File.separator + fileSrc);
+            request.setCharacterEncoding(BusinessConstants.GBK);
+            String userAgent = request.getHeader("User-Agent");
+            OutputStream out = response.getOutputStream();
+            if (userAgent.contains(SAFARI) && !userAgent.contains(EDGE)) {
+                log.info("进入 Safari 下载");
+                response.setContentType("application/octet-stream");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+            } else if ((userAgent.contains(MSIE) || userAgent.contains(TRIDENT))) {
+                if(!userAgent.contains(EDGE)){
+                    log.info("进入 IE 下载");
+                    request.setCharacterEncoding(BusinessConstants.UTF8);
+                    response.setContentType("application/octet-stream");
+                    response.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes(BusinessConstants.GBK), StandardCharsets.ISO_8859_1));
+                }
+            } else if (userAgent.contains(EDGE)) {
+                log.info("进入 edge 下载");
+                request.setCharacterEncoding(BusinessConstants.UTF8);
+                response.setContentType("application/octet-stream");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName, BusinessConstants.UTF8));
+            } else {
+                log.info("其他 类型 下载");
+                request.setCharacterEncoding(BusinessConstants.GBK);
+                response.setContentType("text/html;charset=gbk");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
+            }
+            byte[] fileContent = getFileByte(file);
+            out.write(fileContent, 0, fileContent.length);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
+        }
+        return new JsonMessage(null, ResponseCodeEnum.SUCCESS.getCode(), ResponseCodeEnum.SUCCESS.getCnName());
+    }
+
 }
