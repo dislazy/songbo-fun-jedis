@@ -141,7 +141,6 @@ public class FileTool {
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new SystemException(ResponseCodeEnum.FILE_UPLOAD_ERROR, e);
         }
         return new JsonMessage(null, ResponseCodeEnum.SUCCESS.getCode(), ResponseCodeEnum.SUCCESS.getCnName());
     }
