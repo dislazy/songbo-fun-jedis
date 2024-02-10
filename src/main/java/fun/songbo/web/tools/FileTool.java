@@ -190,9 +190,26 @@ public class FileTool {
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new SystemException(ResponseCodeEnum.FILE_NOT_EXIST_ERROR, e);
         }
     }
-
+    
+    public static InputStream getResourcesFileInputStream(String fileRelativePath){
+        //获取容器资源解析器
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            //获取所有匹配的文件
+            Resource[] resources = resolver.getResources(fileRelativePath);
+            Resource resource = null;
+            if(resources != null && resources.length > 0){
+                resource = resources[0];
+            }
+            //获得文件流，因为在jar文件中，不能直接通过文件资源路径拿到文件，但是可以在jar包中拿到文件流
+            InputStream stream = resource.getInputStream();
+            return stream;
+        } catch (IOException e) {
+            log.warn("读取文件流失败！" + e);
+        }
+        return null;
+    }
 
 }
