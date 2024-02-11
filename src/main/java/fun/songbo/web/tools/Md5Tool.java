@@ -1,8 +1,6 @@
-package com.bigonelab.dashboard.common.tools;
+package fun.songbo.web.tools;
 
-
-import com.google.common.base.Charsets;
-
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -51,7 +49,7 @@ public class Md5Tool {
             resultString = strObj;
             MessageDigest md = MessageDigest.getInstance("MD5");
             // md.digest() 该函数返回值为存放哈希值结果的byte数组
-            resultString = byteToString(md.digest(strObj.getBytes(Charsets.UTF_8)));
+            resultString = byteToString(md.digest(strObj.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException ex) {
             ex.printStackTrace();
         }

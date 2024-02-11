@@ -1,18 +1,12 @@
 package fun.songbo.web.tools;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author jack
@@ -42,10 +36,10 @@ public class ListTool {
      * @Description:    数组转字符串
      */
     public static String list2String(List<String> data, String symbol){
-        if(CollectionUtils.isEmpty(data)){
+        if(data.isEmpty()){
             return null;
         }
-        return Joiner.on(symbol).join(data);
+        return String.join(symbol, data);
     }
 
 
@@ -57,10 +51,7 @@ public class ListTool {
         {
             return new ArrayList<>();
         }
-        return Lists.newArrayList(Splitter.on(symbol)
-                .trimResults()
-                .omitEmptyStrings()
-                .split(data));
+       return Arrays.stream(data.split(symbol)).collect(Collectors.toList());
     }
 
 }

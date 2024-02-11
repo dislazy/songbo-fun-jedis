@@ -3,9 +3,9 @@ package fun.songbo.web.tools;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.lang3.RandomStringUtils;
 import java.nio.ByteBuffer;
+import java.util.Base64;
 import java.util.UUID;
 
 
@@ -29,7 +29,7 @@ public class TotpTool {
     public static String generateSecretKey() {
         // UUID + 4位随机字符生成唯一标识
         String uniqueId = UUID.randomUUID() + RandomStringUtils.randomAlphabetic(4);
-        return new String(new Base32().encode(uniqueId.getBytes()));
+        return new String(Base64.getEncoder().encode(uniqueId.getBytes()));
     }
 
     /**
@@ -184,7 +184,7 @@ public class TotpTool {
      */
     private static byte[] hmacsha(byte[] content, String key) {
         try {
-            byte[] byteKey = new Base32().decode(key);
+            byte[] byteKey =  Base64.getDecoder().decode(key);
             Mac hmac = Mac.getInstance("HmacSHA1");
             SecretKeySpec keySpec = new SecretKeySpec(byteKey, "HmacSHA1");
             hmac.init(keySpec);
