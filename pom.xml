@@ -7,11 +7,10 @@
 	
     <groupId>fun.songbo.web</groupId>
     <artifactId>songbo-fun-jedis</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>songbo-fun-jedis</name>
     <description>jedis connection tool helper</description>
-    <url>https://github.com/dislazy/alidaodao-app-jedis</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

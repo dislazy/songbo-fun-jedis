@@ -62,4 +62,4 @@ public class RedisConfiguration {
     //get指定db相关方法
     //String data = redisClient.get(redisKey);
 ```
-到此结束
+感谢jetbeans的授权
