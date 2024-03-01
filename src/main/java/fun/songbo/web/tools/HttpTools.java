@@ -61,5 +61,18 @@ public class HttpTools {
                 .toString();
     }
 
-
+    /**
+     * 字符串数组转成字符串
+     *
+     * @param strs [a,b,c]
+     * @return a, b, c
+     */
+    public static String toString(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str).append(",");
+        }
+        String result = sb.toString();
+        return result.substring(0, result.length() - 1);
+    }
 }
