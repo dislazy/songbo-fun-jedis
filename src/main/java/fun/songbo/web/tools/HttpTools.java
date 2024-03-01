@@ -44,4 +44,22 @@ public class HttpTools {
                 .append(str.substring(1))
                 .toString();
     }
+
+    /**
+     * 首字母小写
+     *
+     * @param str
+     * @return
+     */
+    public static String lowerCase(String str) {
+        if (StringUtils.isBlank(str)) {
+            return str;
+        }
+        return new StringBuilder(str.length())
+                .append(Character.toLowerCase(str.charAt(0)))
+                .append(str.substring(1))
+                .toString();
+    }
+
+
 }
