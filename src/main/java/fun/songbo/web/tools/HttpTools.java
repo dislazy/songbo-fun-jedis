@@ -87,4 +87,34 @@ public class HttpTools {
         }
         return str.equals("nan") || str.equals("inf")  ? null :str+"%";
     }
+
+    /**
+     * 数据null转横杠-
+     *
+     * @param obj
+     * @return
+     */
+    public static Object objNullToBar(Object obj){
+        if (obj == null){
+            return "-";
+        }
+        return obj;
+    }
+
+
+    public static String getRegion(Object start, Object end) {
+        if (start == null && end == null) {
+            return "";
+        }
+        if (start == "" && end == "") {
+            return "";
+        }
+        if (start == null) {
+            return end.toString();
+        }
+        if (end == null) {
+            return start.toString();
+        }
+        return start + " - " + end;
+    }
 }
