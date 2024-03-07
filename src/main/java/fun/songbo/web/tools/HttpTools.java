@@ -75,4 +75,16 @@ public class HttpTools {
         String result = sb.toString();
         return result.substring(0, result.length() - 1);
     }
+    /**
+     * 返回百分比数据
+     *
+     * @param str
+     * @return
+     */
+    public static String percentData(String str){
+        if (StringUtils.isEmpty(str)){
+            return null;
+        }
+        return str.equals("nan") || str.equals("inf")  ? null :str+"%";
+    }
 }
