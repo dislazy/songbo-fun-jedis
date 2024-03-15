@@ -3,6 +3,7 @@ package fun.songbo.web.tools;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -114,6 +115,15 @@ public class ListCopyTool {
         return denominator == 0L ? null :
                 new BigDecimal((molecular - denominator) * 100)
                         .divide(new BigDecimal(denominator), 2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * 组装对应的value
+     * @param value 真实数据
+     * @return 0 或者 真实数据
+     */
+    public static Long initCountValue(Long value) {
+        return Objects.isNull(value) ? 0L : value;
     }
 
 }
