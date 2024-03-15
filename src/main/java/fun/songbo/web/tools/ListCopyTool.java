@@ -2,6 +2,7 @@ package fun.songbo.web.tools;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 
 /**
@@ -103,6 +104,16 @@ public class ListCopyTool {
         BigDecimal one = new BigDecimal("1");
         return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
-
+    /**
+     * 计算同比、环比 = (分子-分母)*100 / 分母 = 百分比
+     * @param molecular 分子
+     * @param denominator 分母
+     * @return 除了%号之外的百分比
+     */
+    public static Double initDoubleValue(long molecular, long denominator) {
+        return denominator == 0L ? null :
+                new BigDecimal((molecular - denominator) * 100)
+                        .divide(new BigDecimal(denominator), 2, RoundingMode.HALF_UP).doubleValue();
+    }
 
 }
