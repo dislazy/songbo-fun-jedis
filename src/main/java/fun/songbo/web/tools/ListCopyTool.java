@@ -1,9 +1,13 @@
 package fun.songbo.web.tools;
 
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
@@ -171,4 +175,57 @@ public class ListCopyTool {
         return random.nextInt(max) % (max - min + 1) + min;
     }
 
+
+    /**
+     * 字符串转金额,可以处理金额 如 5000万,15亿,1.4 亿
+     *
+     * @param str
+     * @return
+     * @throws ParseException
+     */
+    public static BigDecimal strToBigDecimal(String str) throws ParseException {
+        if (StringUtils.isBlank(str)) {
+            return null;
+        }
+        //统一成大写形式
+        str = str.toUpperCase().trim();
+        if (ArrayUtils.contains(new String[]{"非公开", "-", "--", "- -", "---"}, str)) {
+            return null;
+        }
+        char[] chars = str.toCharArray();
+        int coefficient = 1;
+        int subIndex = 0;
+        for (char c : chars) {
+            if (Character.isDigit(c) || ArrayUtils.contains(new char[]{',', '.'}, c)) {
+                subIndex++;
+                continue;
+            } else {
+                switch (c) {
+                    case '十':
+                        coefficient *= 10;
+                        break;
+                    case '百':
+                        coefficient *= 100;
+                        break;
+                    case '千':
+                        coefficient *= 1000;
+                        break;
+                    case '万':
+                        coefficient *= 10000;
+                        break;
+                    case 'M':
+                        coefficient *= 1000000;
+                        break;
+                    case '亿':
+                        coefficient *= 100000000;
+                        break;
+                    case ' ':
+                        break;
+                    default:
+                        throw new NumberFormatException("Unsupported string conversion!");
+                }
+            }
+        }
+        return BigDecimal.valueOf(numberFormat.parse(new String(ArrayUtils.subarray(chars, 0, subIndex))).doubleValue() * coefficient);
+    }
 }
