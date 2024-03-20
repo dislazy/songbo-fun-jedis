@@ -314,4 +314,39 @@ public class ListCopyTool {
         str = str.divide(new BigDecimal(10000), scale, BigDecimal.ROUND_HALF_UP);
         return str;
     }
+    public static Double turnWan(Double str, Integer scale) {
+        if (str == null) {
+            return BigDecimal.ZERO.doubleValue();
+        }
+        BigDecimal b = BigDecimal.valueOf(str);
+        str = b.divide(new BigDecimal(10000), 6, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return str;
+    }
+
+    public static String turnWan(String str, Integer scale) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        str = b.divide(new BigDecimal(10000), scale, BigDecimal.ROUND_HALF_UP).toString();
+        return str;
+    }
+
+    /**
+     * 校验值，为空返回 --
+     */
+    public static String checkVal(String str) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        return str;
+    }
+
 }
