@@ -228,4 +228,90 @@ public class ListCopyTool {
         }
         return BigDecimal.valueOf(numberFormat.parse(new String(ArrayUtils.subarray(chars, 0, subIndex))).doubleValue() * coefficient);
     }
+
+    /**
+     * 百分比数字转 BigDecimal
+     *
+     * @param str
+     * @return
+     */
+    public static BigDecimal percentStrToBigDecimal(String str) {
+        try {
+            NumberFormat nf = NumberFormat.getPercentInstance();
+            return BigDecimal.valueOf(nf.parse(str).doubleValue());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static Double strToDouble(String str) {
+        try {
+            return Double.parseDouble(str);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static Integer strToInteger(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * 元->万元
+     *
+     * @param str
+     * @return java.math.BigDecimal
+     */
+    public static BigDecimal turnWan(BigDecimal str) {
+        return turnWan(str, 6);
+    }
+
+
+    public static Double turnWan(Double str) {
+        return turnWan(str, 6);
+    }
+
+    public static String turnWan(String str) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        str = b.divide(new BigDecimal(10000), 6, BigDecimal.ROUND_HALF_UP).toString();
+        return str;
+    }
+
+    public static String roundHalfUp(String str, Integer scale) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        str = b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+        return str;
+    }
+
+    public static String roundHalfUp(Double str, Integer scale) {
+        if (str == null) {
+            return "--";
+        }
+        BigDecimal b = BigDecimal.valueOf(str);
+        return b.setScale(scale, BigDecimal.ROUND_HALF_UP).toString();
+    }
+
+    public static BigDecimal turnWan(BigDecimal str, Integer scale) {
+        if (str == null) {
+            return BigDecimal.ZERO;
+        }
+        str = str.divide(new BigDecimal(10000), scale, BigDecimal.ROUND_HALF_UP);
+        return str;
+    }
 }
