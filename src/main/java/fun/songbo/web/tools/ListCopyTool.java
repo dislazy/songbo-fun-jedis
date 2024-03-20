@@ -3,13 +3,28 @@ package fun.songbo.web.tools;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 /**
  * @author jack
  */
 public class ListCopyTool {
+
+    static Random random = new Random();
+    /**
+     * 本地格式化的解析器
+     */
+    static NumberFormat numberFormat = NumberFormat.getNumberInstance();
+    /**
+     * 验证码的数据范围
+     */
+    static String str = "abcedfghijklmnopqrstuvwxyz1234567890";
+
+    public static final BigDecimal RATE_USD = BigDecimal.valueOf(6.8);
+
     /**
      * 生成UUID
      *
@@ -124,6 +139,25 @@ public class ListCopyTool {
      */
     public static Long initCountValue(Long value) {
         return Objects.isNull(value) ? 0L : value;
+    }
+
+
+
+    /**
+     * 生成随机邮件验证码
+     *
+     * @param codeLength
+     * @return
+     */
+    public static String randomEmailCode(Integer codeLength) {
+        StringBuilder builder = new StringBuilder();
+        Random random = new Random();
+        int length = str.length();
+        for (int i = 0; i < codeLength; i++) {
+            int number = random.nextInt(length);
+            builder.append(str.charAt(number));
+        }
+        return builder.toString();
     }
 
 }
