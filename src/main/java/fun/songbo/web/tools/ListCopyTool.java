@@ -3,6 +3,7 @@ package fun.songbo.web.tools;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -347,6 +348,47 @@ public class ListCopyTool {
             return "--";
         }
         return str;
+    }
+
+    /**
+     * 校验参数保留两位小数，添加%
+     */
+    public static String addPercentage(String str) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        str = new BigDecimal(str).setScale(2, BigDecimal.ROUND_HALF_DOWN).toString();
+        return str + "%";
+    }
+
+    /**
+     * 保留两位小数
+     * @param content
+     * @return
+     */
+    public static Object twoPoint(String content) {
+        if (StringUtils.isBlank(content) || !NumberUtils.isCreatable(content)) {
+            return null;
+        }
+        return new BigDecimal(content).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
+    }
+
+    /**
+     * 校验参数，百分比换算
+     */
+    public static String toPercentage(String str) {
+        if (StringUtils.isBlank(str)) {
+            return "--";
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return "--";
+        }
+        return b.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP) + "%";
     }
 
 }
