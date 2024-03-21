@@ -405,4 +405,59 @@ public class ListCopyTool {
         return str;
     }
 
+    /**
+     * 减美元汇率
+     */
+    public static String divRateUsd(String str) {
+        if (StringUtils.isBlank(str)) {
+            return BigDecimal.ZERO.toString();
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO.toString();
+        }
+        str = b.divide(RATE_USD, 6, BigDecimal.ROUND_HALF_UP).toString();
+        return str;
+    }
+
+    /**
+     * 第一位数四舍五入取整补零
+     */
+    public static Integer roundToZero(Integer num) {
+        //为空 返回0
+        if (num == null) {
+            return 0;
+        }
+        //小于10的返回10
+        if (num < 10) {
+            return 10;
+        }
+        BigDecimal numRound = new BigDecimal(0);
+        String numStr = String.valueOf(num);
+        //10的n次方
+        BigDecimal pow = new BigDecimal(10).pow(numStr.length() - 1);
+        Integer indexTwo = Integer.valueOf(numStr.substring(0, 1));
+        if (Integer.valueOf(numStr.substring(1,2)) >= 5) {
+            numRound = new BigDecimal(indexTwo + 1).multiply(pow);
+        } else {
+            numRound = new BigDecimal(indexTwo).multiply(pow);
+        }
+        return numRound.intValue();
+    }
+
+
+    /**
+     * 将对应的数值相乘
+     *
+     * @param num1 数值
+     * @param num2 数值
+     * @return
+     */
+    public static Long mathNumMultiply(Long num1, Long num2) {
+        if (Objects.nonNull(num1) && Objects.nonNull(num2)) {
+            return num1 * num2;
+        }
+        return null;
+    }
+
 }
