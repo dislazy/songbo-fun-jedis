@@ -390,5 +390,19 @@ public class ListCopyTool {
         }
         return b.multiply(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP) + "%";
     }
+    /**
+     * 加美元汇率
+     */
+    public static String mulRateUsd(String str) {
+        if (StringUtils.isBlank(str)) {
+            return BigDecimal.ZERO.toString();
+        }
+        BigDecimal b = new BigDecimal(str);
+        if (b.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO.toString();
+        }
+        str = b.multiply(RATE_USD).toString();
+        return str;
+    }
 
 }
