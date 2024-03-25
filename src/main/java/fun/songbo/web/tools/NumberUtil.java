@@ -1,12 +1,15 @@
-package fun.songbo.web.config;
+package fun.songbo.web.tools;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -139,6 +142,9 @@ public class NumberUtil {
     }
 
 
+
+
+
     public static BigDecimal driveOneHundred(String str, Integer scale) {
         if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
             return null;
@@ -177,6 +183,49 @@ public class NumberUtil {
                 str = (new BigDecimal(str)).setScale(2, 5).toString();
                 return str + "%";
             }
+        }
+    }
+
+    public static BigDecimal turnWan(BigDecimal str, Integer scale) {
+        if (str == null) {
+            return BigDecimal.ZERO;
+        } else {
+            str = str.divide(new BigDecimal(10000), scale, 4);
+            return str;
+        }
+    }
+
+    public static String matchMomOrYoyForPercentage(Object molecular, Object denominator) {
+        Double v = matchMomOrYoyForPercentageNum(molecular, denominator, 2, 100L);
+        return Objects.isNull(v) ? null : (new BigDecimal(String.valueOf(v))).doubleValue() + "%";
+    }
+
+    public static Double matchMomOrYoyForPercentageNum(Object molecular, Object denominator, int scale, Long multiplier) {
+        BigDecimal v = divideAndMultiplyNumForMomOrYoy(molecular, denominator, scale, multiplier);
+        return Objects.nonNull(v) ? v.doubleValue() : null;
+    }
+
+    public static BigDecimal divideAndMultiplyNumForMomOrYoy(Object molecular, Object denominator, int scale, Long multiplier) {
+        if (!Objects.isNull(molecular) && !Objects.isNull(denominator)) {
+            if (NumberUtils.isCreatable(String.valueOf(molecular)) && NumberUtils.isCreatable(String.valueOf(denominator))) {
+                if ((new BigDecimal(String.valueOf(denominator))).doubleValue() == 0.0) {
+                    return null;
+                } else {
+                    BigDecimal v = null;
+
+                    try {
+                        v = (new BigDecimal(String.valueOf(molecular))).subtract(new BigDecimal(String.valueOf(denominator))).multiply(new BigDecimal(multiplier)).divide(new BigDecimal(String.valueOf(denominator)), scale, RoundingMode.HALF_UP);
+                    } catch (Exception var6) {
+                        LOGGER.error("[NumberTool][divideAndMultiplyNumForMomOrYoy]statistic error : ", var6);
+                    }
+
+                    return v;
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
         }
     }
 }
