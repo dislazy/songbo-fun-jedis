@@ -674,7 +674,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrange(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -686,7 +686,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrange(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -698,7 +698,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrange(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -710,7 +710,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrange(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -722,7 +722,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrangeWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -734,7 +734,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrangeWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -746,7 +746,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrangeByScoreWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -758,7 +758,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeByScore(key, max, min, offset, count);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -770,7 +770,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeByScoreWithScores(key, max, min, offset, count);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -789,7 +789,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrangeByScoreWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -801,7 +801,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -813,7 +813,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -825,7 +825,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeByScoreWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
@@ -837,7 +837,7 @@ public class RedisTools {
         try (Jedis jedis = getJedis()) {
             result = jedis.zrevrangeByScoreWithScores(key, min, max);
         }
-        if (Objects.nonNull(result) && result.size() > 0) {
+        if (Objects.nonNull(result) && !result.isEmpty()) {
             return new HashSet<>(result);
         }
         return null;
