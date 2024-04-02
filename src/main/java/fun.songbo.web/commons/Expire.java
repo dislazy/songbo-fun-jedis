@@ -9,18 +9,59 @@ public class Expire {
      * 10秒钟
      */
     public static Expire s10 = new Expire(10);
+
+    public static Expire s15 = new Expire(15);
+
+    /**
+     * 30s
+     */
+    public static Expire s30 = new Expire(30);
+
+    public static Expire s45 = new Expire(35);
+
+
     /**
      * 1分钟
      */
     public static Expire m1 = new Expire(60);
+
+    /**
+     * 2 mins
+     */
+    public static Expire m2 = new Expire(120);
+
     /**
      * 3分钟
      */
     public static Expire m3 = new Expire(180);
     /**
+     * 4 mins
+     */
+    public static Expire m4 = new Expire(240);
+
+    /**
      * 5分钟
      */
     public static Expire m5 = new Expire(300);
+    /**
+     * 6 mins
+     */
+    public static Expire m6 = new Expire(360);
+    /**
+     * 7 mins
+     */
+    public static Expire m7 = new Expire(420);
+
+    /**
+     * m8
+     */
+    public static Expire m8 = new Expire(480);
+
+    /**
+     * m9
+     */
+    public static Expire m9 = new Expire(540);
+
     /**
      * 10分钟
      */
@@ -61,6 +102,11 @@ public class Expire {
      * 7天
      */
     public static Expire d7 = new Expire(60 * 60 * 24 * 7);
+    /**
+     * 14天
+     */
+    public static Expire d14 = new Expire(60 * 60 * 24 * 14);
+
     /**
      * 30天
      */
