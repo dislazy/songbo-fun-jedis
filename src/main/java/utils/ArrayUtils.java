@@ -59,11 +59,7 @@ public class ArrayUtils {
         if (array == null) {
             return null;
         }
-        List<T> list = new ArrayList<>();
-        for (T t : array) {
-            list.add(t);
-        }
-        return list;
+        return new ArrayList<>(Arrays.asList(array));
     }
 
     /**
@@ -131,7 +127,7 @@ public class ArrayUtils {
      * @return 结果
      */
     public static String join(List<String> strList, String... separator) {
-        if (strList == null || strList.size() == 0) {
+        if (strList == null || strList.isEmpty()) {
             return "";
         }
         String spt = ",";
