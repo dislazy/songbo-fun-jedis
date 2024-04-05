@@ -31,4 +31,24 @@ public class StringUtils {
         return StringUtils.isNotBlank(str);
     }
 
+    /**
+     * 将字符串转换为大写
+     *
+     * @param str 要转换的字符串
+     * @return 转换为大写后的字符串
+     */
+    public static String toUpperCase(String str) {
+        return str != null ? str.toUpperCase() : null;
+    }
+
+    /**
+     * 将字符串转换为小写
+     *
+     * @param str 要转换的字符串
+     * @return 转换为小写后的字符串
+     */
+    public static String toLowerCase(String str) {
+        return str != null ? str.toLowerCase() : null;
+    }
+
 }
