@@ -83,4 +83,77 @@ public class StringUtils {
         return StringUtils.equalsIgnoreCase(str1, str2);
     }
 
+    /**
+     * 检查字符串是否包含子字符串
+     *
+     * @param str       要检查的字符串
+     * @param substring 子字符串
+     * @return 如果包含子字符串，则返回true；否则返回false
+     */
+    public static boolean contains(String str, String substring) {
+        return StringUtils.contains(str, substring);
+    }
+
+    /**
+     * 检查字符串是否以指定前缀开头
+     *
+     * @param str    要检查的字符串
+     * @param prefix 前缀
+     * @return 如果以指定前缀开头，则返回true；否则返回false
+     */
+    public static boolean startsWith(String str, String prefix) {
+        return StringUtils.startsWith(str, prefix);
+    }
+
+    /**
+     * 检查字符串是否以指定后缀结尾
+     *
+     * @param str    要检查的字符串
+     * @param suffix 后缀
+     * @return 如果以指定后缀结尾，则返回true；否则返回false
+     */
+    public static boolean endsWith(String str, String suffix) {
+        return StringUtils.endsWith(str, suffix);
+    }
+
+    /**
+     * 将字符串的首字母大写
+     *
+     * @param str 要转换的字符串
+     * @return 首字母大写后的字符串
+     */
+    public static String capitalize(String str) {
+        return StringUtils.capitalize(str);
+    }
+
+    /**
+     * 将字符串的首字母小写
+     *
+     * @param str 要转换的字符串
+     * @return 首字母小写后的字符串
+     */
+    public static String uncapitalize(String str) {
+        return StringUtils.uncapitalize(str);
+    }
+
+    /**
+     * 反转字符串
+     *
+     * @param str 要反转的字符串
+     * @return 反转后的字符串
+     */
+    public static String reverse(String str) {
+        return StringUtils.reverse(str);
+    }
+
+    /**
+     * 重复字符串指定次数
+     *
+     * @param str     要重复的字符串
+     * @param repeat  重复次数
+     * @return 重复后的字符串
+     */
+    public static String repeat(String str, int repeat) {
+        return StringUtils.repeat(str, repeat);
+    }
 }
