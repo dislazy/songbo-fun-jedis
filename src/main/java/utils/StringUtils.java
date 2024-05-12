@@ -1,5 +1,6 @@
 package utils;
 
+
 /**
  * <p>
  *
@@ -155,5 +156,66 @@ public class StringUtils {
      */
     public static String repeat(String str, int repeat) {
         return StringUtils.repeat(str, repeat);
+    }
+
+    /**
+     * 检查字符串是否为回文
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串是回文，则返回true；否则返回false
+     */
+    public static boolean isPalindrome(String str) {
+        if (str == null) {
+            return false;
+        }
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
+    }
+
+    /**
+     * 统计字符在字符串中出现的次数
+     *
+     * @param str 要检查的字符串
+     * @param ch  要统计的字符
+     * @return 字符出现的次数
+     */
+    public static int countOccurrences(String str, char ch) {
+        if (str == null) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 移除字符串中的所有空白字符
+     *
+     * @param str 要处理的字符串
+     * @return 移除空白字符后的字符串
+     */
+    public static String removeWhitespace(String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.replaceAll("\\s+", "");
+    }
+
+    /**
+     * 缩写字符串到指定长度
+     *
+     * @param str    要缩写的字符串
+     * @param length 缩写后的长度
+     * @return 缩写后的字符串
+     */
+    public static String abbreviate(String str, int length) {
+        if (str == null) {
+            return null;
+        }
+        return StringUtils.abbreviate(str, length);
     }
 }
