@@ -218,4 +218,57 @@ public class StringUtils {
         }
         return StringUtils.abbreviate(str, length);
     }
+
+    /**
+     * 移除字符串中的指定字符
+     *
+     * @param str 要处理的字符串
+     * @param ch  要移除的字符
+     * @return 移除指定字符后的字符串
+     */
+    public static String removeChar(String str, char ch) {
+        if (str == null) {
+            return null;
+        }
+        return str.replace(String.valueOf(ch), "");
+    }
+
+    /**
+     * 检查字符串是否只包含数字
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串只包含数字，则返回true；否则返回false
+     */
+    public static boolean isNumeric(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 反转字符串中的单词顺序
+     *
+     * @param str 要处理的字符串
+     * @return 反转单词顺序后的字符串
+     */
+    public static String reverseWords(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        String[] words = str.split("\\s+");
+        StringBuilder reversed = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; i--) {
+            reversed.append(words[i]);
+            if (i != 0) {
+                reversed.append(" ");
+            }
+        }
+        return reversed.toString();
+    }
 }
