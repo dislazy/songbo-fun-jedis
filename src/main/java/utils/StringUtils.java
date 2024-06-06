@@ -271,4 +271,53 @@ public class StringUtils {
         }
         return reversed.toString();
     }
+
+    /**
+     * 将字符串转换为标题大小写
+     *
+     * @param str 要转换的字符串
+     * @return 转换为标题大小写后的字符串
+     */
+    public static String toTitleCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        String[] words = str.split("\\s+");
+        StringBuilder titleCase = new StringBuilder();
+        for (String word : words) {
+            if (word.length() > 0) {
+                titleCase.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
+            }
+        }
+        return titleCase.toString().trim();
+    }
+
+    /**
+     * 检查字符串是否为有效的电子邮件地址
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串是有效的电子邮件地址，则返回true；否则返回false
+     */
+    public static boolean isValidEmail(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return str.matches(emailRegex);
+    }
+
+    /**
+     * 移除字符串中的所有非字母数字字符
+     *
+     * @param str 要处理的字符串
+     * @return 移除非字母数字字符后的字符串
+     */
+    public static String removeNonAlphanumeric(String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.replaceAll("[^A-Za-z0-9]", "");
+    }
 }
