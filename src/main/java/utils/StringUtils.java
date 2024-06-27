@@ -320,4 +320,48 @@ public class StringUtils {
         }
         return str.replaceAll("[^A-Za-z0-9]", "");
     }
+
+    /**
+     * 检查字符串是否忽略大小写为回文
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串忽略大小写是回文，则返回true；否则返回false
+     */
+    public static boolean isPalindromeIgnoreCase(String str) {
+        if (str == null) {
+            return false;
+        }
+        String lowerStr = str.toLowerCase();
+        String reversed = new StringBuilder(lowerStr).reverse().toString();
+        return lowerStr.equals(reversed);
+    }
+
+    /**
+     * 统计字符串中的单词数量
+     *
+     * @param str 要检查的字符串
+     * @return 单词数量
+     */
+    public static int countWords(String str) {
+        if (str == null || str.isEmpty()) {
+            return 0;
+        }
+        String[] words = str.split("\\s+");
+        return words.length;
+    }
+
+    /**
+     * 移除字符串中的所有标点符号
+     *
+     * @param str 要处理的字符串
+     * @return 移除标点符号后的字符串
+     */
+    public static String removePunctuation(String str) {
+        if (str == null) {
+            return null;
+        }
+        return str.replaceAll("\\p{Punct}", "");
+    }
+
+
 }
