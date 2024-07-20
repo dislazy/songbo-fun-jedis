@@ -363,5 +363,55 @@ public class StringUtils {
         return str.replaceAll("\\p{Punct}", "");
     }
 
+    /**
+     * 将字符串转换为驼峰命名法
+     *
+     * @param str 要转换的字符串
+     * @return 转换为驼峰命名法后的字符串
+     */
+    public static String toCamelCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        String[] words = str.split("\\s+");
+        StringBuilder camelCase = new StringBuilder(words[0].toLowerCase());
+        for (int i = 1; i < words.length; i++) {
+            camelCase.append(Character.toUpperCase(words[i].charAt(0)))
+                    .append(words[i].substring(1).toLowerCase());
+        }
+        return camelCase.toString();
+    }
 
+    /**
+     * 将字符串转换为帕斯卡命名法
+     *
+     * @param str 要转换的字符串
+     * @return 转换为帕斯卡命名法后的字符串
+     */
+    public static String toPascalCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        String[] words = str.split("\\s+");
+        StringBuilder pascalCase = new StringBuilder();
+        for (String word : words) {
+            pascalCase.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase());
+        }
+        return pascalCase.toString();
+    }
+
+    /**
+     * 检查字符串是否为有效的IP地址
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串是有效的IP地址，则返回true；否则返回false
+     */
+    public static boolean isValidIPAddress(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        String ipRegex = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+        return str.matches(ipRegex);
+    }
 }
