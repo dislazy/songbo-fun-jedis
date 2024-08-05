@@ -414,4 +414,70 @@ public class StringUtils {
         String ipRegex = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
         return str.matches(ipRegex);
     }
+
+    /**
+     * 检查字符串是否只包含字母
+     *
+     * @param str 要检查的字符串
+     * @return 如果字符串只包含字母，则返回true；否则返回false
+     */
+    public static boolean isAlpha(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 将字符串转换为交替大小写
+     *
+     * @param str 要转换的字符串
+     * @return 转换为交替大小写后的字符串
+     */
+    public static String toAlternatingCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        StringBuilder alternatingCase = new StringBuilder();
+        boolean upper = true;
+        for (char c : str.toCharArray()) {
+            if (Character.isLetter(c)) {
+                if (upper) {
+                    alternatingCase.append(Character.toUpperCase(c));
+                } else {
+                    alternatingCase.append(Character.toLowerCase(c));
+                }
+                upper = !upper;
+            } else {
+                alternatingCase.append(c);
+            }
+        }
+        return alternatingCase.toString();
+    }
+
+    /**
+     * 移除字符串中的重复字符
+     *
+     * @param str 要处理的字符串
+     * @return 移除重复字符后的字符串
+     */
+    public static String removeDuplicates(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        StringBuilder noDuplicates = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            if (noDuplicates.indexOf(String.valueOf(c)) == -1) {
+                noDuplicates.append(c);
+            }
+        }
+        return noDuplicates.toString();
+    }
+
+
 }
