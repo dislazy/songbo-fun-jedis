@@ -480,4 +480,39 @@ public class StringUtils {
     }
 
 
+    /**
+     * 将字符串转换为二进制表示
+     *
+     * @param str 要转换的字符串
+     * @return 二进制表示的字符串
+     */
+    public static String toBinary(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        StringBuilder binary = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            binary.append(String.format("%8s", Integer.toBinaryString(c)).replaceAll(" ", "0"));
+        }
+        return binary.toString();
+    }
+
+    /**
+     * 将二进制字符串转换为文本
+     *
+     * @param binaryStr 要转换的二进制字符串
+     * @return 转换后的文本
+     */
+    public static String fromBinary(String binaryStr) {
+        if (binaryStr == null || binaryStr.isEmpty()) {
+            return binaryStr;
+        }
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < binaryStr.length(); i += 8) {
+            String byteStr = binaryStr.substring(i, i + 8);
+            text.append((char) Integer.parseInt(byteStr, 2));
+        }
+        return text.toString();
+    }
+
 }
