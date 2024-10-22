@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -231,49 +232,56 @@ public class ArrayUtils {
     }
 
     /**
-     * 对象转Double
+     * 反转数组
      *
-     * @param obj
-     * @return
+     * @param array 要反转的数组
+     * @param <T>   数组类型
+     * @return 反转后的数组
      */
-    public static Double getDouble(Object obj) {
-        if (obj == null) {
+    public static <T> T[] reverse(T[] array) {
+        if (array == null) {
             return null;
         }
-        try {
-            return Double.valueOf(obj.toString());
-        } catch (Exception e) {
-            log.error("[getDouble]error: ",e);
-        }
-        return null;
+        List<T> list = Arrays.asList(array);
+        Collections.reverse(list);
+        return list.toArray(array);
     }
 
     /**
-     * 对象转Boolean
+     * 查找数组中的最大元素
      *
-     * @param obj
-     * @return
+     * @param array 要查找的数组
+     * @return 数组中的最大元素
      */
-    public static Boolean getBoolean(Object obj) {
-        if (obj == null) {
+    public static Integer findMax(Integer[] array) {
+        if (array == null || array.length == 0) {
             return null;
         }
-        try {
-            return Boolean.valueOf(obj.toString());
-        } catch (Exception e) {
-            log.error("[getBoolean]error: ",e);
+        Integer max = array[0];
+        for (Integer num : array) {
+            if (num > max) {
+                max = num;
+            }
         }
-        return null;
+        return max;
     }
 
     /**
-     * 转字符串
+     * 查找数组中的最小元素
      *
-     * @param obj
-     * @return
+     * @param array 要查找的数组
+     * @return 数组中的最小元素
      */
-    public static String getString(Object obj) {
-        return obj == null ? null : obj.toString();
+    public static Integer findMin(Integer[] array) {
+        if (array == null || array.length == 0) {
+            return null;
+        }
+        Integer min = array[0];
+        for (Integer num : array) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        return min;
     }
-
 }
