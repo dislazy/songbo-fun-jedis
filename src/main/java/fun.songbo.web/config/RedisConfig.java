@@ -5,15 +5,31 @@ package fun.songbo.web.config;
  */
 public class RedisConfig {
 
+    private static final String DEFAULT_REDIS_HOST = "127.0.0.1";
+    private static final int DEFAULT_REDIS_PORT = 6379;
+    private static final int DEFAULT_MAX_TOTAL = 1024;
+    private static final int DEFAULT_MAX_IDLE = 8;
+    private static final int DEFAULT_MIN_IDLE = 1;
+    private static final int DEFAULT_MAX_WAIT_MILLIS = 10000;
+    private static final int DEFAULT_TIMEOUT = 20000;
+    private static final boolean DEFAULT_BLOCK_WHEN_EXHAUSTED = true;
+    private static final boolean DEFAULT_TEST_ON_BORROW = false;
+    private static final boolean DEFAULT_TEST_ON_RETURN = false;
+    private static final boolean DEFAULT_TEST_ON_CREATE = false;
+    private static final boolean DEFAULT_TEST_WHILE_IDLE = false;
+    private static final boolean DEFAULT_JMX_ENABLED = true;
+    private static final long DEFAULT_TIME_BETWEEN_EVICTION_RUNS = 30000L;
+    private static final long DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS = 60000L;
+
     /**
      * host地址
      */
-    private String redisHost = "127.0.0.1";
+    private String redisHost = DEFAULT_REDIS_HOST;
 
     /**
      * 端口号
      */
-    private int redisPort = 6379;
+    private int redisPort = DEFAULT_REDIS_PORT;
     /**
      * 密码
      */
@@ -34,7 +50,7 @@ public class RedisConfig {
      * 但事实上这只是个理论值，除此之外还要预留一些资源，所以maxTotal可以比理论值大一些。这个值不是越大越好，一方面连接太多会占用客户端和服务端资源，另一方面对于Redis这种高QPS的服务器，如果出现大命令的阻塞，即使设置再大的资源池也无济于事。
      *
      */
-    private int maxTotal = 1024;
+    private int maxTotal = DEFAULT_MAX_TOTAL;
     /**
      * 资源池允许的最大空闲连接数
      *
@@ -46,52 +62,52 @@ public class RedisConfig {
      *
      * 您可以根据实际总QPS和调用Redis的客户端规模整体评估每个节点所使用的连接池大小。
      */
-    private int maxIdle = 8;
+    private int maxIdle = DEFAULT_MAX_IDLE;
     /**
      * 资源池确保的最少空闲连接数
      */
-    private int minIdle = 1;
+    private int minIdle = DEFAULT_MIN_IDLE;
     /**
      * 当资源池用尽后，调用者是否要等待。只有当值为true时，下面的maxWaitMillis才会生效。
      */
-    private boolean blockWhenExhausted = true;
+    private boolean blockWhenExhausted = DEFAULT_BLOCK_WHEN_EXHAUSTED;
 
     /**
      * 当资源池连接用尽后，调用者的最大等待时间（单位为毫秒）。-1 代表永不过时直到获取链接;默认为10S
      */
-    private int maxWaitMillis = 10000;
+    private int maxWaitMillis = DEFAULT_MAX_WAIT_MILLIS;
     /**
      * 连接超时又是读写超时
      */
-    private int timeout = 20000;
+    private int timeout = DEFAULT_TIMEOUT;
     /**
      * 向资源池借用连接时是否做连接有效性检测（ping）。检测到的无效连接将会被移除。	 业务量很大时候建议设置为false，减少一次ping的开销。
      */
-    private boolean testOnBorrow = false;
+    private boolean testOnBorrow = DEFAULT_TEST_ON_BORROW;
     /**
      * 向资源池归还连接时是否做连接有效性检测（ping）。检测到无效连接将会被移除。	业务量很大时候建议设置为false，减少一次ping的开销。
      */
-    private boolean testOnReturn = false;
+    private boolean testOnReturn = DEFAULT_TEST_ON_RETURN;
     /**
      * 默认false，create的时候检测是有有效，如果无效则从连接池中移除，并尝试获取继续获取
      */
-    private boolean testOnCreate = false;
+    private boolean testOnCreate = DEFAULT_TEST_ON_CREATE;
     /**
      * 是否在空闲资源监测时通过ping命令监测连接有效性，无效连接将被销毁。	建议开启
      */
-    private boolean testWhileIdle = false;
+    private boolean testWhileIdle = DEFAULT_TEST_WHILE_IDLE;
     /**
      * 是否开启JMX监控	建议开启，请注意应用本身也需要开启。
      */
-    private boolean jmxEnabled = true;
+    private boolean jmxEnabled = DEFAULT_JMX_ENABLED;
     /**
      * 空闲资源的检测周期（单位为毫秒）	建议设置，周期自行选择，可考虑为30000 即30S。
      */
-    private Long timeBetweenEvictionRuns = 30000L;
+    private Long timeBetweenEvictionRuns = DEFAULT_TIME_BETWEEN_EVICTION_RUNS;
     /**
      * 资源池中资源的最小空闲时间（单位为毫秒），达到此值后空闲资源将被移除。	可根据自身业务决定，一般默认值即可，也可考虑为60000。
      */
-    private Long minEvictableIdleTimeMillis = 60000L;
+    private Long minEvictableIdleTimeMillis = DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS;
     /**
      * 做空闲资源检测时，每次检测资源的个数。	可根据自身应用连接数进行微调，如果设置为 -1，就是对所有连接做空闲监测。
      */
