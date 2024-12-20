@@ -929,5 +929,29 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 获取所有匹配模式的键
+     *
+     * @param pattern 模式
+     * @return 匹配的键集合
+     */
+    public Set<String> getKeysByPattern(String pattern) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.keys(pattern);
+        }
+    }
+
+    /**
+     * 获取键的类型
+     *
+     * @param key 键
+     * @return 键的类型
+     */
+    public String getKeyType(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.type(key);
+        }
+    }
+
 
 }
