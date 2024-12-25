@@ -953,5 +953,17 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 获取列表的长度
+     *
+     * @param key 键
+     * @return 列表的长度
+     */
+    public Long getListLength(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.llen(key);
+        }
+    }
+
 
 }
