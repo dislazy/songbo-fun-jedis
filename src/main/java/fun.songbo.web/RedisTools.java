@@ -965,5 +965,17 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 获取键的剩余生存时间（毫秒）
+     *
+     * @param key 键
+     * @return 剩余生存时间（毫秒）
+     */
+    public Long pttl(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.pttl(key);
+        }
+    }
+
 
 }
