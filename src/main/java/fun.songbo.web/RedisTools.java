@@ -977,5 +977,18 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 设置键的值并指定过期时间（毫秒）
+     *
+     * @param key 键
+     * @param value 值
+     * @param milliseconds 过期时间（毫秒）
+     * @return 设置结果
+     */
+    public String psetex(String key, long milliseconds, String value) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.psetex(key, milliseconds, value);
+        }
+    }
 
 }
