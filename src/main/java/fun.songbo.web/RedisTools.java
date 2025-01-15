@@ -991,4 +991,29 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 获取集合中的一个随机成员
+     *
+     * @param key 键
+     * @return 随机成员
+     */
+    public String srandmmber(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.srandmember(key);
+        }
+    }
+
+    /**
+     * 获取集合中的多个随机成员
+     *
+     * @param key 键
+     * @param count 成员数量
+     * @return 随机成员集合
+     */
+    public List<String> srandmember(String key, int count) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.srandmember(key, count);
+        }
+    }
+
 }
