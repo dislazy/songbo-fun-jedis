@@ -6,6 +6,7 @@ import fun.songbo.web.config.RedisConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.StreamEntryID;
 import redis.clients.jedis.params.SetParams;
 import redis.clients.jedis.resps.ScanResult;
 import redis.clients.jedis.resps.Tuple;
@@ -1013,6 +1014,20 @@ public class RedisTools {
     public List<String> srandmember(String key, int count) {
         try (Jedis jedis = getJedis()) {
             return jedis.srandmember(key, count);
+        }
+    }
+
+
+    /**
+     * 添加条目到流
+     *
+     * @param key 流的键
+     * @param fields 字段和值的映射
+     * @return 新条目的ID
+     */
+    public StreamEntryID xadd(String key, Map<String, String> fields) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xadd(key, StreamEntryID.NEW_ENTRY, fields);
         }
     }
 
