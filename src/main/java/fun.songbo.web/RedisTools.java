@@ -9,6 +9,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.StreamEntryID;
 import redis.clients.jedis.params.SetParams;
 import redis.clients.jedis.resps.ScanResult;
+import redis.clients.jedis.resps.StreamEntry;
 import redis.clients.jedis.resps.Tuple;
 import java.time.Duration;
 import java.util.*;
@@ -1028,6 +1029,34 @@ public class RedisTools {
     public StreamEntryID xadd(String key, Map<String, String> fields) {
         try (Jedis jedis = getJedis()) {
             return jedis.xadd(key, StreamEntryID.NEW_ENTRY, fields);
+        }
+    }
+
+    /**
+     * 读取流中的条目
+     *
+     * @param key 流的键
+     * @param start 开始ID
+     * @param end 结束ID
+     * @param count 条目数量
+     * @return 条目列表
+     */
+    public List<StreamEntry> xread(String key, StreamEntryID start, StreamEntryID end, int count) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xrange(key, start, end, count);
+        }
+    }
+
+    /**
+     * 删除流中的条目
+     *
+     * @param key 流的键
+     * @param ids 条目ID数组
+     * @return 删除的条目数量
+     */
+    public Long xdel(String key, StreamEntryID... ids) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xdel(key, ids);
         }
     }
 
