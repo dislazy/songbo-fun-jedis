@@ -3,8 +3,13 @@ package fun.songbo.web;
 import fun.songbo.web.commons.EXPX;
 import fun.songbo.web.config.RedisConfig;
 import junit.framework.TestCase;
+import redis.clients.jedis.StreamEntryID;
+import redis.clients.jedis.resps.StreamEntry;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -55,7 +60,31 @@ public class RedisToolsTest extends TestCase {
     public void testName() {
     }
 
+    public void testZadd() {
+        initRedisTools();
+        Long result = redisTools.zadd("testZSet", 1.0, "member1");
+        assertTrue(result > 0);
+    }
 
+    public void testZrange() {
+        initRedisTools();
+        Set<String> range = redisTools.zrange("testZSet", 0, -1);
+        assertNotNull(range);
+    }
+
+    public void testXadd() {
+        initRedisTools();
+        Map<String, String> fields = new HashMap<>();
+        fields.put("field1", "value1");
+        StreamEntryID id = redisTools.xadd("testStream", fields);
+        assertNotNull(id);
+    }
+
+    public void testXread() {
+        initRedisTools();
+        List<StreamEntry> entries = redisTools.xread("testStream", new StreamEntryID("0-0"), new StreamEntryID("9999999999999-0"), 10);
+        assertNotNull(entries);
+    }
 
 
 }

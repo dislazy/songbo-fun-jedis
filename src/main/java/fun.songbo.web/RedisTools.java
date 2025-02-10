@@ -1060,4 +1060,29 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 修剪流到指定长度
+     *
+     * @param key 流的键
+     * @param maxLen 最大长度
+     * @return 修剪的条目数量
+     */
+    public Long xtrim(String key, long maxLen) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xtrim(key, maxLen, true);
+        }
+    }
+
+    /**
+     * 获取流的长度
+     *
+     * @param key 流的键
+     * @return 流的长度
+     */
+    public Long xlen(String key) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xlen(key);
+        }
+    }
+
 }
