@@ -1085,4 +1085,18 @@ public class RedisTools {
         }
     }
 
+
+    /**
+     * 获取流的最后一个条目
+     *
+     * @param key 流的键
+     * @return 最后一个条目
+     */
+    public StreamEntry xlast(String key) {
+        try (Jedis jedis = getJedis()) {
+            List<StreamEntry> entries = jedis.xrevrange(key, (StreamEntryID) null, null,1);
+            return entries.isEmpty() ? null : entries.get(0);
+        }
+    }
+
 }

@@ -87,4 +87,28 @@ public class RedisToolsTest extends TestCase {
     }
 
 
+
+    public void testLpush() {
+        initRedisTools();
+        Long result = redisTools.lpush("testList", "value1", "value2");
+        assertTrue(result > 0);
+    }
+
+    public void testLpop() {
+        initRedisTools();
+        String value = redisTools.lpop("testList");
+        assertNotNull(value);
+    }
+
+    public void testSadd() {
+        initRedisTools();
+        Long result = redisTools.sadd("testSet", "member1", "member2");
+        assertTrue(result > 0);
+    }
+
+    public void testSmembers() {
+        initRedisTools();
+        Set<String> members = redisTools.smembers("testSet");
+        assertNotNull(members);
+    }
 }
