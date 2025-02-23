@@ -1099,4 +1099,35 @@ public class RedisTools {
         }
     }
 
+
+    /**
+     * 获取哈希字段的值并转换为double
+     *
+     * @param key 键
+     * @param field 字段
+     * @return 字段的值（double）
+     */
+    public Double hgetDouble(String key, String field) {
+        try (Jedis jedis = getJedis()) {
+            String value = jedis.hget(key, field);
+            return value != null ? Double.valueOf(value) : null;
+        }
+    }
+
+
+    /**
+     * 增加哈希字段的值（double）
+     *
+     * @param key 键
+     * @param field 字段
+     * @param increment 增量
+     * @return 增加后的值
+     */
+    public Double hincrByFloat(String key, String field, double increment) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.hincrByFloat(key, field, increment);
+        }
+    }
+
+
 }
