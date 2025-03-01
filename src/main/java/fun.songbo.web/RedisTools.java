@@ -1129,5 +1129,30 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 获取流的第一个条目
+     *
+     * @param key 流的键
+     * @return 第一个条目
+     */
+    public StreamEntry xfirst(String key) {
+        try (Jedis jedis = getJedis()) {
+            List<StreamEntry> entries = jedis.xrange(key, (StreamEntryID) null, null, 1);
+            return entries.isEmpty() ? null : entries.get(0);
+        }
+    }
+
+    /**
+     * 获取流的挂起条目
+     *
+     * @param key 流的键
+     * @param groupName 组名
+     * @return 挂起条目列表
+     */
+    public List<StreamEntry> xpending(String key, String groupName) {
+        try (Jedis jedis = getJedis()) {
+            return (List<StreamEntry>) jedis.xpending(key, groupName);
+        }
+    }
 
 }
