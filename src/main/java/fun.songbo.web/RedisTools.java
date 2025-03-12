@@ -1155,4 +1155,18 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 确认流中的消息
+     *
+     * @param key 流的键
+     * @param groupName 组名
+     * @param id 消息ID
+     * @return 确认的消息数量
+     */
+    public Long xack(String key, String groupName, StreamEntryID id) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xack(key, groupName, id);
+        }
+    }
+
 }
