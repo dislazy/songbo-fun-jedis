@@ -1169,4 +1169,20 @@ public class RedisTools {
         }
     }
 
+    /**
+     * 认领流中的挂起消息
+     *
+     * @param key 流的键
+     * @param groupName 组名
+     * @param consumerName 消费者名
+     * @param minIdleTime 最小空闲时间
+     * @param ids 消息ID数组
+     * @return 认领的消息列表
+     */
+    public List<StreamEntry> xclaim(String key, String groupName, String consumerName, long minIdleTime, StreamEntryID... ids) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xclaim(key, groupName, consumerName,minIdleTime, null,ids);
+        }
+    }
+
 }
