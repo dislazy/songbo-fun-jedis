@@ -8,9 +8,8 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.StreamEntryID;
 import redis.clients.jedis.params.SetParams;
-import redis.clients.jedis.resps.ScanResult;
-import redis.clients.jedis.resps.StreamEntry;
-import redis.clients.jedis.resps.Tuple;
+import redis.clients.jedis.resps.*;
+
 import java.time.Duration;
 import java.util.*;
 
@@ -1184,5 +1183,20 @@ public class RedisTools {
             return jedis.xclaim(key, groupName, consumerName,minIdleTime, null,ids);
         }
     }
+
+    /**
+     * 获取流消费者的信息
+     *
+     * @param key 流的键
+     * @param groupName 组名
+     * @param consumerName 消费者名
+     * @return 流消费者的信息
+     */
+    public List<StreamConsumersInfo> xinfoConsumers(String key, String groupName) {
+        try (Jedis jedis = getJedis()) {
+            return jedis.xinfoConsumers(key, groupName);
+        }
+    }
+
 
 }
