@@ -4,6 +4,7 @@ import fun.songbo.web.commons.EXPX;
 import fun.songbo.web.config.RedisConfig;
 import junit.framework.TestCase;
 import redis.clients.jedis.StreamEntryID;
+import redis.clients.jedis.resps.StreamConsumersInfo;
 import redis.clients.jedis.resps.StreamEntry;
 
 import java.util.HashMap;
@@ -110,5 +111,54 @@ public class RedisToolsTest extends TestCase {
         initRedisTools();
         Set<String> members = redisTools.smembers("testSet");
         assertNotNull(members);
+    }
+
+    // Test for hgetDouble
+    public void testHgetDouble() {
+        initRedisTools();
+        Double value = redisTools.hgetDouble("testHash", "field1");
+        assertNotNull(value);
+    }
+
+    // Test for hincrByFloat
+    public void testHincrByFloat() {
+        initRedisTools();
+        Double newValue = redisTools.hincrByFloat("testHash", "field1", 1.5);
+        assertNotNull(newValue);
+    }
+
+    // Test for xfirst
+    public void testXfirst() {
+        initRedisTools();
+        StreamEntry entry = redisTools.xfirst("testStream");
+        assertNotNull(entry);
+    }
+
+    // Test for xpending
+    public void testXpending() {
+        initRedisTools();
+        List<StreamEntry> pendingEntries = redisTools.xpending("testStream", "testGroup");
+        assertNotNull(pendingEntries);
+    }
+
+    // Test for xack
+    public void testXack() {
+        initRedisTools();
+        Long ackCount = redisTools.xack("testStream", "testGroup", new StreamEntryID("0-0"));
+        assertTrue(ackCount > 0);
+    }
+
+    // Test for xclaim
+    public void testXclaim() {
+        initRedisTools();
+        List<StreamEntry> claimedEntries = redisTools.xclaim("testStream", "testGroup", "testConsumer", 1000, new StreamEntryID("0-0"));
+        assertNotNull(claimedEntries);
+    }
+
+    // Test for xinfoConsumers
+    public void testXinfoConsumers() {
+        initRedisTools();
+        List<StreamConsumersInfo> consumersInfo = redisTools.xinfoConsumers("testStream", "testGroup");
+        assertNotNull(consumersInfo);
     }
 }
